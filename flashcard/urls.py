@@ -23,4 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('core/', include('core.urls')),
     path('', RedirectView.as_view(url='/core/', permanent=True)),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] 
+
+# + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    # Clinton suggested to take this out to make heroku work
