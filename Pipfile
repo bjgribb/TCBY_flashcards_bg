@@ -9,7 +9,8 @@ prospector = "*"
 [packages]
 django = "*"
 psycopg2 = "*"
-django-allauth = "*"
+django-heroku = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
