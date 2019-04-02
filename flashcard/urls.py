@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('core/', include('core.urls')),
     path('', RedirectView.as_view(url='/core/', permanent=True)),
+    # allauth registration
+    url(r'^accounts/', include('allauth.urls')),
 ] 
 
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
