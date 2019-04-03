@@ -20,14 +20,14 @@
       <strong>Messages:</strong>
       <ul>
         {% for message in messages %}
-        <li>{{message}}</li>
+        <li>{{ message }}</li>
         {% endfor %}
       </ul>
     </div>
     {% endif %}
     <div>
-      <strong>TCBY Flashcards</strong>
-      <ul>
+      <h1 class=page-header><strong>Frozen Yogurt Flashcards</strong></h1>
+      <ul class=registration-options>
         {% if user.is_authenticated %}
         <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
         <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
@@ -37,8 +37,8 @@
         {% endif %}
       </ul>
     </div>
-    {% block content %}
     {% endblock %}
+    {% block content %}
     {% endblock %}
     {% block extra_body %}
     {% endblock %}
