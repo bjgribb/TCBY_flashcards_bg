@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # core apps
+    'core.apps.CoreConfig', # moving up here so we can override ALLAUTH templates
     # django standard apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,10 +46,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
-    # core apps
-    'core.apps.CoreConfig', # MDN tutorial way
-    # 'core', --Clinton's way
+    # 'allauth.socialaccount.providers.facebook', commenting out for now while working on google auth
 ]
 
 SITE_ID = 1
@@ -103,6 +102,8 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+# will print emails to console for development 
+EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -139,3 +140,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = '/core/'
