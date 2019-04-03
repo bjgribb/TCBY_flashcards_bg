@@ -28,4 +28,4 @@ urlpatterns = [
 ] 
 
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    # Clinton suggested to take this out to make heroku work
+# Clinton suggested to take this out to make heroku work
