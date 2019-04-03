@@ -72,7 +72,7 @@ class Category(models.Model):
 
 class Quiz(models.Model):
     """Model representing each instance of a user quizzing themself."""
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
         # Foreign Key used b/c a Quiz can only be taken by 1 User, but User can take many quizzes.
     total_score = models.IntegerField(null=True, blank=True)
         # https://docs.djangoproject.com/en/2.2/ref/models/fields/#integerfield
@@ -84,10 +84,10 @@ class Deck(models.Model):
     title = models.CharField(max_length=200, default="Deck")
     kreator = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, related_name='deck')
     users = models.ManyToManyField(to=User, related_name='deck_user')
-    quiz = models.ForeignKey(to='Quiz', on_delete=models.DO_NOTHING, related_name='deck')
+    quiz = models.ForeignKey(to='Quiz', on_delete=models.DO_NOTHING, related_name='deck', null=True, blank=True)
     categories = models.ManyToManyField(to='Category', related_name='deck')
     public = models.BooleanField(default=True, editable=True)
-    slug = models.CharField(max_length=100, unique=True, default='oops')
+    slug = models.SlugField(unique=True, null=True, blank=True)
 
     def set_slug(self):
         """
@@ -116,7 +116,7 @@ class Deck(models.Model):
     def get_absolute_url(self):
         # need to create view and template 
         # with 'deck-detail' name to match
-        return reverse('deck-detail', args=[(self.slug)])
+        return reverse('deck_list', args=[(self.slug)])
     
     def __str__(self):
         return self.title

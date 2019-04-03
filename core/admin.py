@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import Kreator, Category, Deck, Card
+from core.models import Kreator, Category, Deck, Card, Quiz
 
 # Register your models here.
 @admin.register(Kreator)
@@ -19,3 +19,6 @@ class DeckAdmin(admin.ModelAdmin):
 class CardAdmin(admin.ModelAdmin):
     list_display = ('question', 'answer', 'deck')
     
+@admin.register(Quiz)
+class QuizAdmin(admin.ModelAdmin):
+   pass

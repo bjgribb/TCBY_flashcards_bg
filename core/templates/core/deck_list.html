@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block contentm%}
 {% for deck in decks %}
-<a href="{{ deck.get_absolute_url }}">{{deck.title}}</a>
+<p>{{ deck.title }}</p>
 {% endfor %}
 {% endblock %}

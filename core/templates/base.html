@@ -25,7 +25,7 @@
     </div>
     {% endif %}
     <div>
-      <strong>TCBY Flashcards</strong>
+      <a href="{% url 'index' %}"<strong>TCBY Flashcards</strong></a>
       <ul>
         {% if user.is_authenticated %}
         <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
