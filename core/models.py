@@ -56,5 +56,12 @@ class Card(models.Model):
     correct = models.BooleanField(blank=True, null=True, default=False)
     deck = models.ForeignKey(to=Deck, on_delete=models.SET_NULL, null=True, related_name='card')
 
-def __str__(self):
-    return self.question
+    def __str__(self):
+        return self.question
+
+class Quiz(models.Model):
+    pass
+
+class Category(models.Model):
+    pass
+    
