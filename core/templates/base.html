@@ -12,6 +12,11 @@
     {% block meta %}{% endblock %} <!--Redux block-->
 </head>
 <body>
+    <header>
+        <div>
+            <a href="{% url 'account_login' %}">Login</a>
+        </div>
+    </header>
     <div>{% block content %}{% endblock %}</div>
 </body>
 </html>

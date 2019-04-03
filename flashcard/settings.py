@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.facebook', commenting out for now while working on google auth
     # core apps
     'core.apps.CoreConfig', # MDN tutorial way
     # 'core', --Clinton's way
@@ -139,3 +139,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = '/core/'
+LOGOUT_REDIRECT_URL = '/core/'
