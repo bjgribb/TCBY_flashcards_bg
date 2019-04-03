@@ -41,8 +41,18 @@ class Deck(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
+        # need to create view and template 
+        # with 'deck-detail' name to match
         return reverse('deck-detail', args=[(self.slug)])
     
     def __str__(self):
         return self.title
-    
+
+class Card(models.Model):
+    question = models.CharField(max_length=200)
+    answer = models.CharField(max_length=500)
+    correct = models.BooleanField(blank=True, null=True, default=False)
+    deck = models.ForeignKey(to=Deck, on_delete=models.SET_NULL, related_name='card')
+
+def __str__(self):
+    return self.question
