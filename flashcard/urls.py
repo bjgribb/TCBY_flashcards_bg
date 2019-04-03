@@ -28,5 +28,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
 ] 
 
-# + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    # Clinton suggested to take this out to make heroku work
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# Clinton suggested to take this out to make heroku work
