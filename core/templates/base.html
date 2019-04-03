@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,9 +8,10 @@
     <title>TCBY Flashcards {% block head_title %}{% endblock %}</title>
     {% block extra_head %}
     {% endblock %}
-    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/> <!--Tachyons if we want it-->
+    {% comment %} <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/> <!--Tachyons if we want it--> {% endcomment %}
     <!-- Add CSS in static file -->
     {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Indie+Flower|Julius+Sans+One|Nanum+Pen+Script|Rajdhani" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   </head>
   <body>
