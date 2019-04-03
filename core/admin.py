@@ -5,7 +5,6 @@ from core.models import Deck, Card
 @admin.register(Deck)
 class DeckAdmin(admin.ModelAdmin):
     list_display = ('title', 'kreator', 'public')
-    exclude = ('slug')
 
 @admin.register(Card)
 class CardAdmin(admin.ModelAdmin):

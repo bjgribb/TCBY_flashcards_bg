@@ -11,8 +11,8 @@ class Deck(models.Model):
     Model representing deck of flashcards
     """
     title = models.CharField(max_length=200, default="Deck")
-    kreator = models.ForeignKey(to='User', on_delete=models.SET_NULL, related_name='deck')
-    users = models.ManyToManyField(to='User', related_name='deck')
+    kreator = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, related_name='deck')
+    users = models.ManyToManyField(to=User, related_name='deck_user')
     quiz = models.ForeignKey(to='Quiz', on_delete=models.DO_NOTHING, related_name='deck')
     categories = models.ManyToManyField(to='Category', related_name='deck')
     public = models.BooleanField(default=True, editable=True)
@@ -54,7 +54,7 @@ class Card(models.Model):
     question = models.CharField(max_length=200)
     answer = models.CharField(max_length=500)
     correct = models.BooleanField(blank=True, null=True, default=False)
-    deck = models.ForeignKey(to=Deck, on_delete=models.SET_NULL, related_name='card')
+    deck = models.ForeignKey(to=Deck, on_delete=models.SET_NULL, null=True, related_name='card')
 
 def __str__(self):
     return self.question
