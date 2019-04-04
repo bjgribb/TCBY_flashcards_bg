@@ -25,15 +25,15 @@
       </ul>
     </div>
     {% endif %}
-    <div>
-      <h1 class=page-header><strong>Frozen Yogurt Flashcards</strong></h1>
-      <ul class=registration-options>
+    <div class="page-header">
+      <h1><strong>Frozen Yogurt Flashcards</strong></h1>
+      <ul class="registration-options">
         {% if user.is_authenticated %}
-        <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-        <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+        <li class="registration-item"><a href="{% url 'account_email' %}">Change E-mail</a></li>
+        <li class="registration-item"><a href="{% url 'account_logout' %}">Sign Out</a></li>
         {% else %}
-        <li><a href="{% url 'account_login' %}">Sign In</a></li>
-        <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+        <li class="registration-item"><a href="{% url 'account_login' %}">Sign In</a></li>
+        <li class="registration-item"><a href="{% url 'account_signup' %}">Sign Up</a></li>
         {% endif %}
       </ul>
     </div>

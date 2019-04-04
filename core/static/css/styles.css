@@ -1,7 +1,21 @@
 * {
     font-family: 'Inconsolata', monospace;
+    border: 1px dotted grey;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem 1rem 2rem;
 }
 
 .registration-options {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
     list-style-type: none;
+}
+
+.registration-item {
+    padding: 1rem;
 }

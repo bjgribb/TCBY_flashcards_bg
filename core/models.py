@@ -83,7 +83,7 @@ class Deck(models.Model):
     Model representing deck of flashcards
     """
     title = models.CharField(max_length=200, default="Deck")
-    kreator = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, related_name='deck')
+    kreator = models.ForeignKey(to=Kreator, on_delete=models.SET_NULL, null=True, related_name='deck')
     users = models.ManyToManyField(to=User, related_name='deck_user')
     categories = models.ManyToManyField(to='Category', related_name='deck')
     public = models.BooleanField(default=True, editable=True)
