@@ -84,7 +84,7 @@ class Deck(models.Model):
     """
     title = models.CharField(max_length=200, default="Deck")
     kreator = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, related_name='deck')
-    users = models.ManyToManyField(to=User, related_name='deck_user')
+    users = models.ManyToManyField(to=User, related_name='user_decks')
     categories = models.ManyToManyField(to='Category', related_name='deck')
     public = models.BooleanField(default=True, editable=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
@@ -113,10 +113,10 @@ class Deck(models.Model):
         self.set_slug()
         super().save(*args, **kwargs)
 
-    def get_absolute_url(self):
-        # need to create view and template 
-        # with 'deck-detail' name to match
-        return reverse('deck_list', args=[(self.slug)])
+    # def get_absolute_url(self):
+    #     # need to create view and template 
+    #     # with 'deck-detail' name to match
+    #     return reverse('deck-detail', args=[(self.slug)])
     
     def __str__(self):
         return self.title

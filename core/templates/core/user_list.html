@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+
+<h2>Welcome {{ user.get_username }}</h2>
+
+<h4>Below are decks you're a user of:</h4>
+{% for deck in decks %}
+
+{% if user in deck.users.all%}
+
+<p><a href="">{{ deck.title }}</a></p>
+
+{% endif %}
+
+{% endfor %}
+
+<h4>Below are available public decks:</h4>
+
+{% for deck in decks %}
+
+{% if deck.public %}
+
+<p><a href="">{{ deck.title }}</a></p>
+
+{% comment %} I would like an else statement here for if there are no public decks but had trouble not showing iterations of non_public decks {% endcomment %}
+
+{% endif %}
+
+{% endfor %}
+
+{% endif %}
+
+{% endblock %}
