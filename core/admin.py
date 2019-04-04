@@ -1,29 +1,19 @@
 from django.contrib import admin
-from core.models import Kreator, Category, Deck, Card
-
+from core.models import Category, Deck, Card, Quiz
 # Register your models here.
-class DeckInline(admin.TabularInline):
-    model = Deck
-    
-@admin.register(Kreator)
-class KreatorAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    inlines = [
-        DeckInline,
-    ]
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
-    exclude = ('slug',)
 
 @admin.register(Deck)
 class DeckAdmin(admin.ModelAdmin):
-    list_display = ('title', 'kreator', 'public')
-    exclude = ('slug',)
-   
+    list_display = ('title', 'public')
 
 @admin.register(Card)
 class CardAdmin(admin.ModelAdmin):
-    list_display = ('question', 'answer', 'deck')
+    list_display = ('question', 'answer')
     
+@admin.register(Quiz)
+class QuizAdmin(admin.ModelAdmin):
+    pass
