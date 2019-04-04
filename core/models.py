@@ -123,9 +123,10 @@ class Deck(models.Model):
         return self.title
 
 class Card(models.Model):
-    question = models.CharField(max_length=200)
+    question = models.CharField(max_length=500)
     answer = models.CharField(max_length=500)
     correct = models.BooleanField(blank=True, null=True, default=None)
+        # https://docs.djangoproject.com/en/2.1/ref/models/fields/#booleanfield
     decks = models.ManyToManyField(to=Deck, related_name='card', blank=True)
         # 4/4/2019 changed from ForeingKey to ManyToMany field to test use in multiple decks and removed on_delete argument
 
