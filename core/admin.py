@@ -9,7 +9,6 @@ class KreatorAdmin(admin.ModelAdmin):
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
    list_display = ('name',)
-from core.models import Deck, Card
 
 @admin.register(Deck)
 class DeckAdmin(admin.ModelAdmin):
@@ -17,5 +16,6 @@ class DeckAdmin(admin.ModelAdmin):
 
 @admin.register(Card)
 class CardAdmin(admin.ModelAdmin):
-    list_display = ('question', 'answer', 'deck')
+    list_display = ('question', 'answer', 'display_deck')
+      # 4/4/2019 added 'display_deck' since deck was changed to a M2M field
     

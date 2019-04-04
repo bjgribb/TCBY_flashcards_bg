@@ -84,10 +84,11 @@ class Deck(models.Model):
     """
     title = models.CharField(max_length=200, default="Deck")
     kreator = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, related_name='deck')
-    users = models.ManyToManyField(to=User, related_name='deck_user')
+    users = models.ManyToManyField(to=User, related_name='deck_user', blank=True)
+        # 4/4/2019 added 'blank=True' to allow this in the database
     categories = models.ManyToManyField(to='Category', related_name='deck')
     public = models.BooleanField(default=True, editable=True)
-    slug = models.CharField(max_length=100, unique=True, default='oops')
+    slug = models.CharField(max_length=100, unique=True, null=True, blank=True)
 
     def set_slug(self):
         """
@@ -125,7 +126,14 @@ class Card(models.Model):
     question = models.CharField(max_length=200)
     answer = models.CharField(max_length=500)
     correct = models.BooleanField(blank=True, null=True, default=None)
-    deck = models.ForeignKey(to=Deck, on_delete=models.SET_NULL, related_name='card', null=True, blank=True)
+    decks = models.ManyToManyField(to=Deck, related_name='card', blank=True)
+        # 4/4/2019 changed from ForeingKey to ManyToMany field to test use in multiple decks and removed on_delete argument
+
+    def display_deck(self):
+        """Create a string for Decks. This is required to display Decks in Admin."""
+        return ', '.join(deck.name for deck in self.decks.all()[:3])
+            # str.join(iterable) --> https://docs.python.org/3.7/library/stdtypes.html?highlight=join#str.join
+            # 1st three '[:3]' deck items in the 'self.deck.all()' for a 'Card' object will be joined separated by a comma ', '
 
     def __str__(self):
         return self.question
