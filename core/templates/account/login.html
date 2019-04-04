@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<h1>SIGN IN</h1>
+<h1>Sign In</h1>
 
 {% get_providers as socialaccount_providers %}
 
@@ -22,7 +22,7 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
     {% include "socialaccount/snippets/provider_list.html" with process="login" %}
   </ul>
 
-  <div class="login-or">{% trans 'or' %}</div>
+  {% comment %} <div class="login-or">{% trans 'or' %}</div> {% endcomment %}
 
 </div>
 
