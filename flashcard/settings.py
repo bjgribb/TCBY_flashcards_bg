@@ -141,4 +141,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/core/'
+LOGIN_REDIRECT_URL = '/core/user_list/'

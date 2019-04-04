@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from core.models import Category, Deck
+from core.models import Category, Deck, User
 from django.views import generic
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 
@@ -27,3 +28,17 @@ class CategoryDetailView(generic.DetailView):
         # Create any data and add it to the context
         context['decks'] = Deck.objects.all()
         return context
+
+def deck_detail_view(request):
+    pass
+
+def user_list_view(request):
+    decks = Deck.objects.all()
+    users = User.objects.all()
+
+    context = {
+        'decks': decks,
+        'users': users,
+    }
+
+    return render(request, 'core/user_list.html', context=context)

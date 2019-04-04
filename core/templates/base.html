@@ -14,7 +14,7 @@
   </head>
   <body>
     {% block body %}
-    {% if messages %}
+    {% comment %} {% if messages %}
     <div>
       <strong>Messages:</strong>
       <ul>
@@ -23,9 +23,9 @@
         {% endfor %}
       </ul>
     </div>
-    {% endif %}
+    {% endif %} {% endcomment %}
     <div>
-      <strong>TCBY Flashcards</strong>
+      <a href="{% url 'index' %}"<strong>TCBY Flashcards</strong></a>
       <ul>
         {% if user.is_authenticated %}
         <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
