@@ -7,34 +7,43 @@
 <h2>Welcome {{ user.get_username }}</h2>
 <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" />
 
+<section class="category">
+    <p>Decks by category:</p>
+    <hr/>
+    {% if categories %}
+      {% for category in categories %}
+      <p class="category_nav">
+        <a href="{{ category.get_absolute_url }}">{{ category }}</a>
+      </p>
+      {% endfor %}
+    {% else %}
+        <p>There are no categories in the database</p>
+    {% endif %}
+  </section>
+  
 <h4>Create Deck</h4>
 
-<h4>Below are decks you're a user of:</h4>
-{% for deck in decks %}
+<h4>Below are decks you've created:</h4>
 
-{% if user in deck.users.all%}
+{% for deck in decks %}
+{% if user == deck.creator %}
 
 <p><a href="">{{ deck.title }}</a></p>
 
 {% endif %}
-
 {% endfor %}
 
 <h4>Below are available public decks:</h4>
 
 {% for deck in decks %}
-
 {% if deck.public %}
-{% if user not in deck.users.all %}
+{% if user != deck.creator %}
 
 <p><a href="">{{ deck.title }}</a></p>
-{% comment %} I would like an else statement here for if there are no public decks but had trouble not showing iterations of non_public decks {% endcomment %}
 
 {% endif %}
 {% endif %}
-
 {% endfor %}
 
 {% endif %}
-
 {% endblock %}
