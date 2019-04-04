@@ -1,4 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
+<section class="category">
+    <p>Decks by category:</p>
+    <hr/>
+    {% if categories %}
+      {% for category in categories %}
+      <p class="category_nav">
+        <a href="{{ category.get_absolute_url }}">{{ category }}</a>
+      </p>
+      {% endfor %}
+    {% else %}
+        <p>There are no categories in the database</p>
+    {% endif %}
+  </section>
 {% endblock %}

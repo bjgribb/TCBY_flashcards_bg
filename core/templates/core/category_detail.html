@@ -1,0 +1,19 @@
+{% block content %}
+<section class="book">
+    <h2>Category: {{ category }}</h2>
+    {% if category.deck.all %}
+        <!--access deck through category using the related name 'deck'-->
+        {% for deck in category.deck.all %}
+            <section>
+                <span>
+                <a href="">{{ deck }}</a>
+                </span>
+                <span> created by {{ deck.creator }}
+                </span>
+            </section>
+        {% endfor %}
+    {% else %}
+        <p>There are no {{ category }} decks in the database</p>
+    {% endif %}
+</section>
+{% endblock %}
