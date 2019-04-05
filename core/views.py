@@ -73,4 +73,4 @@ def quiz_view(request, slug):
 
 def get_cards(request):
     cards = Card.objects.all()
-    return JsonResponse({'cards': [card.question for card in cards]})
+    return JsonResponse({'card_dict': [(card.question, card.answer) for card in cards]})
