@@ -2,38 +2,38 @@
 
 {% block content %}
 
-{% if request.user.is_authenticated %}
+    {% if request.user.is_authenticated %}
 
-<div class="flex justify-around items-center">
-    <h2>Welcome {{ user.get_username }}</h2>
-    {% if user.socialaccount_set.all.0 %}
-        <img class="br-100 mw4" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" />
-    {% endif %}
-</div>
-  
-<h4>Create Deck</h4>
+    <div class="flex justify-around items-center">
+        <h2>Welcome {{ user.get_username }}</h2>
+        {% if user.socialaccount_set.all.0 %}
+            <img class="br-100 mw4" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" />
+        {% endif %}
+    </div>
+    
+    <h4>Create Deck</h4>
 
-<h4>Below are decks you've created:</h4>
+    <h4>Below are decks you've created:</h4>
+
+        <div class="flex-ns flex-wrap-ns">
+        {% for deck in decks %}
+            {% if user == deck.creator %}
+            <p class="w-30-ns tc"><a href="{{ deck.get_absolute_url }}">{{ deck.title }}</a></p>
+            {% endif %}
+        {% endfor %}
+        </div>   
+
+    <h4>Below are available public decks:</h4>
 
     <div class="flex-ns flex-wrap-ns">
-    {% for deck in decks %}
-        {% if user == deck.creator %}
-        <p class="w-30-ns tc"><a href="">{{ deck.title }}</a></p>
-        {% endif %}
-    {% endfor %}
-    </div>   
-
-<h4>Below are available public decks:</h4>
-
-<div class="flex-ns flex-wrap-ns">
-    {% for deck in decks %}
-        {% if deck.public %}
-            {% if user != deck.creator %}
-            <p class="w-30-ns tc"><a href="">{{ deck.title }}</a></p>
+        {% for deck in decks %}
+            {% if deck.public %}
+                {% if user != deck.creator %}
+                <p class="w-30-ns tc"><a href="{{ deck.get_absolute_url }}">{{ deck.title }}</a></p>
+                {% endif %}
             {% endif %}
-        {% endif %}
-    {% endfor %}
-</div>
-
-{% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+    
 {% endblock %}

@@ -49,6 +49,35 @@ html {
     padding: 1rem 3rem 1rem 3rem;
 }
 
+.play-quiz {
+    display: flex;
+    flex-direction: column;
+}
+
+#play-button {
+    text-align: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.quiz-display-elements {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-display {
+    width: 600px;
+    height: 400px;
+    text-align: center;
+    line-height: 400px;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.score-display {
+    align-self: flex-start;
+}
+
 .page-footer {
     position: absolute;
     left: 0;
