@@ -6,3 +6,7 @@ function query (selector) {
 function queryAll (selector) {
   return document.querySelectorAll(selector)
 }
+
+function showCard () {
+
+}
