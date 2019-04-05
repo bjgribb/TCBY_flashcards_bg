@@ -25,7 +25,12 @@ SECRET_KEY = '^zd$wuz038rct)%pvnx%_3c5u4-shyadpx6nknme557nx+lwy1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'apricot-cake-46334.herokuapp.com',
+
+]
 
 
 # Application definition
