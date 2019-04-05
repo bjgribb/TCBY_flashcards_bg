@@ -13,9 +13,9 @@
     <link href="https://fonts.googleapis.com/css?family=Inconsolata|Indie+Flower|Julius+Sans+One|Nanum+Pen+Script|Rajdhani" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   </head>
-  <body>
+  <body class="page-body">
     {% block body %}
-    {% comment %} {% if messages %}
+  {% if messages %}
     <div>
       <strong>Messages:</strong>
       <ul>
@@ -26,7 +26,7 @@
     </div>
     {% endif %}
     <div class="page-header">
-      <h1><strong>Frozen Yogurt Flashcards</strong></h1>
+      <h1 class="header-title"><strong>Frozen Yogurt Flashcards</strong></h1>
       <ul class="registration-options">
         {% if user.is_authenticated %}
         <li class="registration-item"><a href="{% url 'account_email' %}">Change E-mail</a></li>
@@ -37,10 +37,11 @@
         {% endif %}
       </ul>
     </div>
+    <main class="main-section">
     {% endblock %}
     {% block content %}
     {% endblock %}
-    {% block extra_body %}
-    {% endblock %}
+    </main>
+  <footer class="page-footer">Thank you for visiting TCBY</footer>
   </body>
 </html>

@@ -1,6 +1,19 @@
 * {
     font-family: 'Inconsolata', monospace;
     border: 1px dotted grey;
+    margin: auto;
+}
+
+html {
+    height: 100%;
+}
+
+.page-body {
+    /* min-height: 100vh; */
+}
+
+.header-title {
+    text-align: left;
 }
 
 .page-header {
@@ -11,7 +24,6 @@
 
 .registration-options {
     display: flex;
-    justify-content: space-between;
     text-align: center;
     list-style-type: none;
 }
