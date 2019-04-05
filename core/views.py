@@ -1,6 +1,7 @@
 from core.models import Category, Deck, User, Card, Quiz
 from django.views import generic
 from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -69,3 +70,7 @@ def quiz_view(request, slug):
     }
 
     return render(request, 'core/quiz.html', context=context)
+
+def get_cards(request):
+    cards = Card.objects.all()
+    return JsonResponse('cards': [(card.question, card.answer) for card in cards}])
