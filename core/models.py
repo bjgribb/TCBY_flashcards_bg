@@ -89,10 +89,18 @@ class Deck(models.Model):
         return self.title
 
 class Card(models.Model):
-    question = models.CharField(max_length=200)
+    question = models.CharField(max_length=500)
     answer = models.CharField(max_length=500)
     correct = models.BooleanField(blank=True, null=True, default=None)
-    deck = models.ManyToManyField(to=Deck, related_name='card', blank=True)
+        # https://docs.djangoproject.com/en/2.1/ref/models/fields/#booleanfield
+    decks = models.ManyToManyField(to=Deck, related_name='card', blank=True)
+
+    def display_deck(self):
+        """Create a string for Decks. This is required to display Decks in Admin."""
+        return ', '.join(deck.title for deck in self.decks.all()[:3])
+            # str.join(iterable) --> https://docs.python.org/3.7/library/stdtypes.html?highlight=join#str.join
+            # 1st three '[:3]' deck items in the 'self.deck.all()' for a 'Card' object will be joined separated by a comma ', '
+    
 
     def __str__(self):
         return self.question 

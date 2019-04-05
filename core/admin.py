@@ -12,7 +12,8 @@ class DeckAdmin(admin.ModelAdmin):
 
 @admin.register(Card)
 class CardAdmin(admin.ModelAdmin):
-    list_display = ('question', 'answer')
+    list_display = ('question', 'answer', 'display_deck')
+      # 4/4/2019 added 'display_deck' since deck was changed to a M2M field
     
 @admin.register(Quiz)
 class QuizAdmin(admin.ModelAdmin):

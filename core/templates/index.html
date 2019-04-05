@@ -3,5 +3,17 @@
 {% block content %}
 <h2>Your home for testing your knowledge</h2>
 
-<p>On our site you can choose from decks of trivia</p>
+<section class="category">
+    <p>Decks by category:</p>
+    <hr/>
+    {% if categories %}
+      {% for category in categories %}
+      <p class="category_nav">
+        <a href="{{ category.get_absolute_url }}">{{ category }}</a>
+      </p>
+      {% endfor %}
+    {% else %}
+        <p>There are no categories in the database</p>
+    {% endif %}
+  </section>
 {% endblock %}
