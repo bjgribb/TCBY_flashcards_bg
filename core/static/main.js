@@ -1,4 +1,4 @@
-const cardData = 'get_cards/'
+const cardData = '/get_cards/'
 
 function query (selector) {
   return document.querySelector(selector)

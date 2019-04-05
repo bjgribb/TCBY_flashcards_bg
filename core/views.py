@@ -71,10 +71,6 @@ def quiz_view(request, slug):
 
     return render(request, 'core/quiz.html', context=context)
 
-# def get_deck(request):
-#     cards = Card.objects.all()
-#     return JsonResponse({'cards': [card.question for card in cards]})
-
 def get_cards(request):
     cards = Card.objects.all()
-    return JsonResponse({'cards': [(card.question, card.answer) for card in cards]})
+    return JsonResponse({'cards': [card.question for card in cards]})
