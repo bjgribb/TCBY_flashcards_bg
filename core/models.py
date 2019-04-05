@@ -83,7 +83,6 @@ class Deck(models.Model):
 
     def get_absolute_url(self):
         # need to create view and template 
-        # with 'deck-detail' name to match
         return reverse('quiz-view', args=[(self.slug)])
     
     def __str__(self):
