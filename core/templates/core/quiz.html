@@ -10,7 +10,9 @@
     </section>
     <section class="play-quiz">
         {% for card in deck.card.all %}
-        <p>{{ card }}</p>
+        <p>{{ card }}: {{card.answer}}</p>
         {% endfor %}
     </section>
+    <div class="js-test">
+    </div>
 {% endblock %}
