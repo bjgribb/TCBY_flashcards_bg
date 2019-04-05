@@ -1,11 +1,11 @@
 * {
-    font-family: 'Inconsolata', monospace;
     border: 1px dotted grey;
     margin: auto;
     padding: 0;
 }
 
 html {
+    font-family: 'Rajdhani', sans-serif;
     min-height: 100%;
 }
 
@@ -14,15 +14,21 @@ html {
     flex-wrap: wrap;
 }
 
-
 .header-title {
-    text-align: left;
+    font-family: 'Comfortaa', cursive;
 }
 
 .page-header {
     display: flex;
     justify-items: stretch;
     padding: 2rem 3rem 2rem 3rem;
+    border-bottom: 2px solid honeydew;
+    background-color: rgb(52, 93, 108);
+}
+
+.page-header a {
+    color: honeydew;
+    text-decoration: none;
 }
 
 .intro {
@@ -37,6 +43,10 @@ html {
 
 .registration-item {
     padding: 1rem;
+}
+
+.category-detail {
+    padding: 1rem 3rem 1rem 3rem;
 }
 
 .page-footer {

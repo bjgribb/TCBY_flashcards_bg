@@ -10,7 +10,7 @@
     {% endblock %}
     <!-- Add CSS in static file -->
     {% load static %}
-    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Indie+Flower|Julius+Sans+One|Nanum+Pen+Script|Rajdhani" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa|Inconsolata|Indie+Flower|Rajdhani|Righteous" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   </head>
   <body class="page-body">
@@ -26,9 +26,10 @@
     </div>
     {% endif %}
     <div class="page-header">
-      <h1 class="header-title"><strong>Frozen Yogurt Flashcards</strong></h1>
+      <h1 class="header-title"><a href="{% url 'index' %}">Frozen Yogurt Flashcards</a></h1>
       <ul class="registration-options">
         {% if user.is_authenticated %}
+        <li class="user-profile-link"><a href="{% url 'user_list' %}">{{ user.get_username }}</a></li>
         <li class="registration-item"><a href="{% url 'account_email' %}">Change E-mail</a></li>
         <li class="registration-item"><a href="{% url 'account_logout' %}">Sign Out</a></li>
         {% else %}
