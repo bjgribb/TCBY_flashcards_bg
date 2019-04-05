@@ -29,6 +29,7 @@
       <h1 class="header-title"><a href="{% url 'index' %}">Frozen Yogurt Flashcards</a></h1>
       <ul class="registration-options">
         {% if user.is_authenticated %}
+        <li class="user-profile-link"><a href="{% url 'user_list' %}">{{ user.get_username }}</a></li>
         <li class="registration-item"><a href="{% url 'account_email' %}">Change E-mail</a></li>
         <li class="registration-item"><a href="{% url 'account_logout' %}">Sign Out</a></li>
         {% else %}
