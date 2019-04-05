@@ -45,9 +45,6 @@ class Quiz(models.Model):
     total_score = models.IntegerField(null=True, blank=True)
     # https://docs.djangoproject.com/en/2.2/ref/models/fields/#integerfield
     deck = models.ForeignKey(to='Deck', on_delete=models.SET_NULL, null=True, blank=True, related_name='quiz')
-
-    def get_absolute_url(self):
-        return reverse("quiz-view", args=[str(self.slug)])
     
 
 class Deck(models.Model):
@@ -87,7 +84,7 @@ class Deck(models.Model):
     def get_absolute_url(self):
         # need to create view and template 
         # with 'deck-detail' name to match
-        return reverse('deck-detail', args=[(self.slug)])
+        return reverse('quiz-view', args=[(self.slug)])
     
     def __str__(self):
         return self.title

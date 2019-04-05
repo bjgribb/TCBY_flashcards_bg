@@ -8,7 +8,7 @@
         {% for deck in category.deck.all %}
             <section>
                 <span>
-                <a href="{{ quiz.get_absolute_url }}">{{ deck }}</a>
+                <a href="{{ deck.get_absolute_url }}">{{ deck }}</a>
                 </span>
                 <span> created by {{ deck.creator }}
                 </span>

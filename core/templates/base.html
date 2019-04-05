@@ -12,7 +12,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   </head>
-  <body class="ma3">
+  <body class="page-body">
     {% block body %}
     {% comment %} {% if messages %}
     <div>
@@ -25,7 +25,7 @@
     </div>
     {% endif %} {% endcomment %}
     <div>
-      <a href="{% url 'index' %}"<strong>TCBY Flashcards</strong></a>
+      <a href="{% url 'index' %}"><strong>TCBY Flashcards</strong></a>
       <ul>
         {% if user.is_authenticated %}
         <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
@@ -38,8 +38,6 @@
     </div>
     {% block content %}
     {% endblock %}
-    {% endblock %}
-    {% block extra_body %}
     {% endblock %}
   </body>
 </html>
