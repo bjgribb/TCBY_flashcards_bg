@@ -6,7 +6,7 @@
     {% if category.deck.all %}
         <!--access deck through category using the related name 'deck'-->
         {% for deck in category.deck.all %}
-            <section>
+            <section class="deck-title">
                 <span>
                 <a href="{{ deck.get_absolute_url }}">{{ deck }}</a>
                 </span>
