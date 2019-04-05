@@ -10,7 +10,6 @@
     {% endblock %}
     <!-- Add CSS in static file -->
     {% load static %}
-    <script src="{% static 'core/static/main.js' %}"></script>
     <link href="https://fonts.googleapis.com/css?family=Comfortaa|Inconsolata|Indie+Flower|Rajdhani|Righteous" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   </head>
@@ -45,5 +44,6 @@
     {% endblock %}
     </main>
   <footer class="page-footer">Thank you for visiting TCBY</footer>
+  <script src="{% static 'main.js' %}"></script>
   </body>
 </html>
