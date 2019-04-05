@@ -9,9 +9,11 @@ html {
     min-height: 100%;
 }
 
-.page-body {
-
+.category-nav {
+    display: flex;
+    flex-wrap: wrap;
 }
+
 
 .header-title {
     text-align: left;
@@ -19,8 +21,12 @@ html {
 
 .page-header {
     display: flex;
-    justify-content: space-between;
-    padding: 1rem 2rem 1rem 2rem;
+    justify-items: stretch;
+    padding: 2rem 3rem 2rem 3rem;
+}
+
+.intro {
+    padding: 1rem 3rem 1rem 3rem;
 }
 
 .registration-options {
@@ -38,5 +44,6 @@ html {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 5rem;
+    height: 2rem;
+    padding: 1rem 3rem 3rem 3rem;
 }
