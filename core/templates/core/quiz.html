@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="deck-title">
+        <span>
+        <a href="{{ deck.get_absolute_url }}">{{ deck }}</a>
+        </span>
+        <span> created by {{ deck.creator }}
+        </span>
+    </section>
+    <section class="play-quiz">
+        {% for card in deck.card.all %}
+        <p>{{ card }}</p>
+        {% endfor %}
+    </section>
+{% endblock %}

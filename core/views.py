@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from core.models import Category, Deck, User
+from core.models import Category, Deck, User, Card, Quiz
 from django.views import generic
 from django.shortcuts import render, get_object_or_404
 
@@ -48,3 +47,25 @@ def user_list_view(request):
     }
 
     return render(request, 'core/user_list.html', context=context)
+
+def quiz_view(request, slug):
+    """
+    View defining the quiz/game portion of the flashcard app.
+    """
+    categories = Category.objects.all()
+    user = User.objects.all()
+    cards = Card.objects.all()
+    quiz = Quiz.objects.all()
+    # get the slug for the deck, because the quiz is essentially 
+    ####### Deck Detail view #######
+    deck = get_object_or_404(Deck, slug=slug)
+
+    context = {
+        'categories': categories,
+        'user': user,
+        'cards': cards,
+        'quiz': quiz,
+        'deck': deck,
+    }
+
+    return render(request, 'core/quiz.html', context=context)
