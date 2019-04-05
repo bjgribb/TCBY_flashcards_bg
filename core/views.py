@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from core.models import Category, Deck, User
+from core.models import Category, Deck, User, Card, Quiz
 from django.views import generic
 from django.shortcuts import render, get_object_or_404
 
@@ -11,8 +11,15 @@ def index(request):
     decks = Deck.objects.all()
 
     context = {
+<<<<<<< Updated upstream
        'categories': categories,
        'decks': decks
+=======
+        'num_decks': num_decks,
+        'decks': decks,
+        'categories': categories,
+        'user': user,
+>>>>>>> Stashed changes
     }
 
     # Render the HTML template index.html with the data in the context variable
@@ -42,3 +49,21 @@ def user_list_view(request):
     }
 
     return render(request, 'core/user_list.html', context=context)
+
+def quiz_view(request, slug):
+    """
+    View defining the quiz/game portion of the flashcard app.
+    """
+    categories = Category.objects.all()
+    user = User.objects.all()
+    cards = Card.objects.all()
+    quiz = get_object_or_404(Quiz, slug=slug)
+
+    context = {
+        'categories': categories,
+        'user': user,
+        'cards': cards,
+        'quiz': quiz,
+    }
+
+    return render(request, 'core/quiz.html', context=context)

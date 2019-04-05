@@ -46,6 +46,10 @@ class Quiz(models.Model):
     # https://docs.djangoproject.com/en/2.2/ref/models/fields/#integerfield
     deck = models.ForeignKey(to='Deck', on_delete=models.SET_NULL, null=True, blank=True, related_name='quiz')
 
+    def get_absolute_url(self):
+        return reverse("quiz-view", args=[str(self.slug)])
+    
+
 class Deck(models.Model):
     """
     Model representing deck of flashcards
