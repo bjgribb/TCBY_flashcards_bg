@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import ModelForm
 from core.models import Card, Deck
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
@@ -19,6 +20,11 @@ class NewCardForm(forms.Form):
 
         # Return the cleaned data.
         return data
+
+# class NewCardForm(forms.ModelForm):
+#     class Meta:
+#         model = Card
+#         fields = ['question', 'answer', 'decks']
 
 
 

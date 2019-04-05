@@ -1,16 +1,13 @@
-<<<<<<< Updated upstream
 from core.models import Category, Deck, User, Card, Quiz
-=======
-from django.shortcuts import render
-from core.models import Category, Deck, User, Card
 from core.forms import NewCardForm
->>>>>>> Stashed changes
 from django.views import generic
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.http import require_http_methods
 from django.views.generic.edit import CreateView
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 # Create your views here.
 
@@ -89,24 +86,30 @@ class CardCreate(LoginRequiredMixin, CreateView):
     fields = ['question', 'answer']
         # specify the fields to dislay in the form
 
-    def form_valid(self, form):
-        form.instance.poster = self.request.user.submitter
-            # Add logged-in user as commenter of comment
-        return super(CardCreate, self).form_valid(form)
-            # Call super-class form validation behaviour
+    # def form_valid(self, form):
+    #     form.instance.poster = self.request.user.submitter
+    #         # Add logged-in user as commenter of comment
+    #     return super(CardCreate, self).form_valid(form)
+    #         # Call super-class form validation behaviour
 
-# @require_http_methods(['POST'])
+# # @require_http_methods(['POST'])
 # @login_required
 # def new_card(request):
 #     """View function for creating a new Card"""
 #     form = NewCardForm(request.POST)
 #     if form.is_valid():
 #         # https://docs.djangoproject.com/en/2.1/ref/forms/validation/
-#         form.save()
+#         card = Card.objects.create(
+#             question=form.cleaned_data['question'],
+#             answer=form.cleaned_data['answer'],
+#         )
+#         card.save()
+#         return HttpResponseRedirect(reverse('user_list'))
 
 #     context = {
 #         'form': form,
+#         # 'card': card,
 #     }
 
-#     return render(request, 'core/new_card', context)
+#     return render(request, 'core/new_card.html', context)
     
