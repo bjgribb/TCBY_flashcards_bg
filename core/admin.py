@@ -4,7 +4,7 @@ from core.models import Category, Deck, Card, Quiz
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-   list_display = ('name',)
+    list_display = ('name',)
 
 @admin.register(Deck)
 class DeckAdmin(admin.ModelAdmin):
@@ -17,4 +17,4 @@ class CardAdmin(admin.ModelAdmin):
     
 @admin.register(Quiz)
 class QuizAdmin(admin.ModelAdmin):
-   pass
+    pass

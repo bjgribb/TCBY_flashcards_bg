@@ -5,19 +5,20 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 
 def index(request):
-    """View function for home page of site."""
+    """
+    View function for index view of site.
+    """
     num_decks = Deck.objects.all().count()
-    categories = Category.objects.all()
     decks = Deck.objects.all()
+    categories = Category.objects.all()
     user = User.objects.all()
 
     context = {
-        'num_decks': num_decks,
-        'decks': decks,
-        'categories': categories,
-        'user': user,
+    'num_decks': num_decks,
+    'decks': decks,
+    'categories': categories,
+    'user': user,
     }
-
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
 
@@ -31,6 +32,7 @@ class CategoryDetailView(generic.DetailView):
         # Create any data and add it to the context
         context['decks'] = Deck.objects.all()
         return context
+
 
 def deck_detail_view(request):
     pass
