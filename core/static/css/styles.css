@@ -5,49 +5,80 @@
 }
 /* main and base sections */
 html {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'News Cycle', sans-serif;
     min-height: 100%;
 }
 
 .category-nav {
     display: flex;
     flex-wrap: wrap;
+    list-style-type: none;
+    padding: 1rem 3rem 1rem 3rem;
 }
 
 .header-title {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fascinate Inline', cursive;
+    font-size: 3rem;
+    align-items: flex-start;
 }
 
 .page-header {
     display: flex;
-    justify-items: stretch;
-    padding: 2rem 3rem 2rem 3rem;
+    padding: 5rem 3rem 5rem 3rem;
     border-bottom: 2px solid honeydew;
-    background-color: rgb(52, 93, 108);
+    background-image: linear-gradient(to bottom,
+    rgba(183, 216, 226, 0.5), rgba(183, 216, 226, 0.351)
+    ), url(https://i.ibb.co/pyh9KHY/brandi-redd-122054-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
 }
 
 .page-header a {
-    color: mintcream;
+    color: darkcyan;
     text-decoration: none;
-}
-
-.intro {
-    padding: 1rem 3rem 1rem 3rem;
 }
 
 .registration-options {
     display: flex;
-    text-align: center;
+    align-items: flex-end;
     list-style-type: none;
 }
 
+.registration-options a:hover {
+    font-size: 110%;
+    text-decoration: underline;
+}
+
 .user-profile-link a {
+    background-color: mintcream;
     color: orange;
     font-weight: 600;
+    padding: 1rem;
+    border-radius: 7%;
+    border: 1px solid darkcyan;
 }
 
 .registration-item {
+    background-color: mintcream;
     padding: 1rem;
+    border: 1px solid darkcyan;
+}
+
+/* Index page */
+.intro {
+    padding: 1rem 3rem 1rem 3rem;
+}
+
+.index-category-menu-item {
+    padding: 1rem;
+    background-color: mintcream;
+    border-radius: 7%;
+}
+
+.index-category-menu-item a {
+    color: darkcyan;
+    text-shadow: 0 2px 0 (50, 50, 50, 0.4);
 }
 
 /* User profile page */
@@ -60,24 +91,56 @@ html {
 }
 
 .create-deck-link {
-    text-align: center;
+    font-style: italic;
     font-weight: 600;
     padding: 1rem;
 }
 
-.list-user-decks {
+.list-public-decks, .list-user-decks {
     display: flex;
+    flex-wrap: wrap;
     list-style-type: none;
+    padding: 1rem 3rem 1rem 3rem;
 }
 
-.list-public-decks {
-    display: flex;
-    list-style-type: none;
+.user-deck-item, .public-deck-item {
+    text-align: center;
+    width: 16rem;
+    height: 10rem;
+    line-height: 10rem;
+    margin: 1rem;
+    border: 1px solid darkcyan;
 }
 
 /* Category detail page */
-.category-detail {
+.category-detail-header {
     padding: 1rem 3rem 1rem 3rem;
+}
+
+/* .category-detail {
+    display:flex;
+    padding: 1rem 3rem 1rem 3rem;
+} */
+
+.category-deck-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 1rem 3rem 1rem 3rem;
+
+}
+
+.category-deck-item {
+    text-align: center;
+    width: 16rem;
+    height: 10rem;
+    line-height: 10rem;
+    margin: 1rem;
+    border: 1px solid darkcyan;
+}
+
+.category-deck-creator {
+
 }
 
 /* Quiz detail page */

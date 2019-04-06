@@ -1,21 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="category-detail">
-    <h2>Category: {{ category }}</h2>
+
+    <h2 class="category-detail-header">Category: {{ category }}</h2>
+    {% comment %} <section class="category-detail"> {% endcomment %}
     {% if category.deck.all %}
         <!--access deck through category using the related name 'deck'-->
-        {% for deck in category.deck.all %}
-            <section class="deck-title">
-                <span>
-                <a href="{{ deck.get_absolute_url }}">{{ deck }}</a>
-                </span>
-                <span> created by {{ deck.creator }}
-                </span>
-            </section>
-        {% endfor %}
+            <ul class="category-deck-list">
+            {% for deck in category.deck.all %}
+                <li class="category-deck-item">
+                <a href="{{ deck.get_absolute_url }}">{{ deck }}</a> created by {{ deck.creator }}
+                </li>
+            {% endfor %}
+            </ul>
     {% else %}
         <p>There are no {{ category }} decks in the database</p>
     {% endif %}
-</section>
+{% comment %} </section> {% endcomment %}
 {% endblock %}
