@@ -1,17 +1,14 @@
 from core.models import Category, Deck, User, Card, Quiz
 from django.views import generic
 from django.shortcuts import render, get_object_or_404
-<<<<<<< HEAD
 from django.http import JsonResponse
 from django.core import serializers
-=======
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.http import require_http_methods
 from django.views.generic.edit import CreateView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
->>>>>>> master
 
 # Create your views here.
 
