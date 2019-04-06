@@ -3,7 +3,7 @@
     margin: auto;
     padding: 0;
 }
-
+/* main and base sections */
 html {
     font-family: 'Rajdhani', sans-serif;
     min-height: 100%;
@@ -27,7 +27,7 @@ html {
 }
 
 .page-header a {
-    color: honeydew;
+    color: mintcream;
     text-decoration: none;
 }
 
@@ -41,14 +41,46 @@ html {
     list-style-type: none;
 }
 
+.user-profile-link a {
+    color: orange;
+    font-weight: 600;
+}
+
 .registration-item {
     padding: 1rem;
 }
 
+/* User profile page */
+.welcome-user {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: start; */
+    align-content: flex-start;
+    padding: 1rem 3rem 1rem 3rem;
+}
+
+.create-deck-link {
+    text-align: center;
+    font-weight: 600;
+    padding: 1rem;
+}
+
+.list-user-decks {
+    display: flex;
+    list-style-type: none;
+}
+
+.list-public-decks {
+    display: flex;
+    list-style-type: none;
+}
+
+/* Category detail page */
 .category-detail {
     padding: 1rem 3rem 1rem 3rem;
 }
 
+/* Quiz detail page */
 .play-quiz {
     display: flex;
     flex-direction: column;
@@ -78,7 +110,9 @@ html {
     align-self: flex-start;
 }
 
+/* Footer */
 .page-footer {
+    background-color: mintcream;
     position: absolute;
     left: 0;
     bottom: 0;
