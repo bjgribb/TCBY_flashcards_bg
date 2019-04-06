@@ -110,12 +110,14 @@ def new_deck(request):
 
         if new_deck_form.is_valid():
             title = request.POST.get('deck_name', '')
-
+            categories = request.POST.getlist('categories', '')
             deck = Deck.objects.create(
                 title=title,
                 creator=request.user,
             )
 
+            # for key in categories:
+            #     deck.categories.add(category)
             deck.save()
 
             return HttpResponseRedirect(reverse('user_list'))

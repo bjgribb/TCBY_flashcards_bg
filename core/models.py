@@ -51,9 +51,9 @@ class Deck(models.Model):
     """
     Model representing deck of flashcards
     """
-    title = models.CharField(max_length=200, default="Deck")
+    title = models.CharField(max_length=200, unique=True)
     creator = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, related_name='deck')
-    categories = models.ManyToManyField(to='Category', related_name='deck')
+    categories = models.ManyToManyField(to='Category', related_name='decks')
     public = models.BooleanField(default=True, editable=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
 
@@ -108,3 +108,27 @@ class Card(models.Model):
         """Returns the url to access a detail record for this card."""
         return reverse('index')
 
+
+#### Clinton's BusyB example: Week 6 Day 2 Afternoon videos ####
+# class Tag(models.Model):
+#     """
+#     Represents a tag or hashtag -- a free-form category that we can add to tasks.
+#     - Tags should be case-insensitive
+#     """
+
+#     # This should be enforced to be unique in a case-insensitive fashion
+#     # but we are leaving it for now.
+#     text = models.CharField(max_length=100, unique=True, help_text="Tag text (must be lowercase)")
+#     tasks = models.ManyToManyField(Task, related_name="tags")
+
+
+### done in Task model ###
+    # def save(self, *args, **kwargs):
+    #     self.parse_tags()
+    #     super().save(*args, **kwargs)
+
+    # def parse_tags(self):
+    #     """
+    #     Read through the description of the task and pull out any tags.
+    #     Create Tag model objects for these and associate them.
+        # """
