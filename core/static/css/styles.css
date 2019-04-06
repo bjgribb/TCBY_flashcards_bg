@@ -1,5 +1,5 @@
 * {
-    border: 1px dotted grey;
+    /* border: 1px dotted grey; */
     margin: auto;
     padding: 0;
 }
@@ -25,9 +25,9 @@ html {
 .page-header {
     display: flex;
     padding: 5rem 3rem 5rem 3rem;
-    border-bottom: 2px solid honeydew;
+    border-bottom: 2px solid darkcyan;
     background-image: linear-gradient(to bottom,
-    rgba(183, 216, 226, 0.5), rgba(183, 216, 226, 0.351)
+    rgba(183, 216, 226, 0.289), rgba(183, 216, 226, 0.2)
     ), url(https://i.ibb.co/pyh9KHY/brandi-redd-122054-unsplash.jpg);
     background-repeat: no-repeat;
     background-position: bottom;
@@ -54,31 +54,30 @@ html {
     background-color: mintcream;
     color: orange;
     font-weight: 600;
-    padding: 1rem;
+    padding: .75rem;
     border-radius: 7%;
     border: 1px solid darkcyan;
 }
 
 .registration-item {
     background-color: mintcream;
-    padding: 1rem;
+    padding: .75rem;
+    border-radius: 7%;
     border: 1px solid darkcyan;
 }
 
 /* Index page */
 .intro {
     padding: 1rem 3rem 1rem 3rem;
+    border-bottom: darkcyan;
 }
 
 .index-category-menu-item {
     padding: 1rem;
-    background-color: mintcream;
-    border-radius: 7%;
 }
 
 .index-category-menu-item a {
     color: darkcyan;
-    text-shadow: 0 2px 0 (50, 50, 50, 0.4);
 }
 
 /* User profile page */
@@ -116,11 +115,6 @@ html {
 .category-detail-header {
     padding: 1rem 3rem 1rem 3rem;
 }
-
-/* .category-detail {
-    display:flex;
-    padding: 1rem 3rem 1rem 3rem;
-} */
 
 .category-deck-list {
     display: flex;
@@ -167,16 +161,19 @@ html {
     line-height: 400px;
     padding: 1rem;
     margin: 1rem;
+    border: 2px solid darkcyan;
 }
 
 .score-display {
     align-self: flex-start;
+    padding: .75rem;
+    border: 1px dashed black;
 }
 
 /* Footer */
 .page-footer {
     background-color: mintcream;
-    position: absolute;
+    /* position: absolute; */
     left: 0;
     bottom: 0;
     width: 100%;
