@@ -184,3 +184,14 @@ html {
     height: 2rem;
     padding: 1rem 3rem 3rem 3rem;
 }
+
+.play-navigation {
+    display: flex;
+}
+
+.play-navigation p {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    border: 1px dashed black;
+    padding: .75rem;
+}
