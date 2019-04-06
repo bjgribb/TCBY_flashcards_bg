@@ -4,10 +4,10 @@
 
     <h2 class="category-detail-header">Category: {{ category }}</h2>
     {% comment %} <section class="category-detail"> {% endcomment %}
-    {% if category.deck.all %}
+    {% if category.decks.all %}
         <!--access deck through category using the related name 'deck'-->
             <ul class="category-deck-list">
-            {% for deck in category.deck.all %}
+            {% for deck in category.decks.all %}
                 <li class="category-deck-item">
                 <a href="{{ deck.get_absolute_url }}">{{ deck }}</a> created by {{ deck.creator }}
                 </li>

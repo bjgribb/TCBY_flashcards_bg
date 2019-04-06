@@ -53,7 +53,7 @@ class Deck(models.Model):
     """
     title = models.CharField(max_length=200, default="Deck")
     creator = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, related_name='deck')
-    categories = models.ManyToManyField(to='Category', related_name='deck')
+    categories = models.ManyToManyField(to='Category', related_name='decks')
     public = models.BooleanField(default=True, editable=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
 
