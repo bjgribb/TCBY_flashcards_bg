@@ -9,7 +9,9 @@
         {% if user.socialaccount_set.all.0 %}
             <img class="avatar" src="{{ user.socialaccount_set.all.0.get_avatar_url }}">
         {% endif %}
-        <h4 class="create-deck-link">Create Deck</h4>
+        <h4 class="create-deck-link">
+            <a href="{% url 'card_form' %}">Create Deck</a>
+        </h4>
     </div>
 
     <h4>Below are decks you've created:</h4>
@@ -24,8 +26,6 @@
             <p class="create-deck-link">Create Your Own Deck</p>
         {% endif %}
        
-          
-
     <h4>Below are available public decks:</h4>
 
     <ul class="list-public-decks">
@@ -40,3 +40,5 @@
     {% endif %}
     
 {% endblock %}
+
+

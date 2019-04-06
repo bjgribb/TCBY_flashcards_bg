@@ -32,7 +32,7 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to access a particular category instance."""
-        return reverse('category-detail', args=[str(self.slug)])
+        return reverse('category_detail', args=[str(self.slug)])
     
     def __str__(self):
         """String for representing the Model object."""
@@ -101,6 +101,10 @@ class Card(models.Model):
             # str.join(iterable) --> https://docs.python.org/3.7/library/stdtypes.html?highlight=join#str.join
             # 1st three '[:3]' deck items in the 'self.deck.all()' for a 'Card' object will be joined separated by a comma ', '
     
-
     def __str__(self):
         return self.question 
+
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this card."""
+        return reverse('index')
+

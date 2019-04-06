@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<h3>Add a new card</h3>
+
+<form action="" method="POST">
+    <!--
+        https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form 
+        form is defined in HTML as a collection of elements inside '<form>...</form>' tags, containing ast least one 'input' element of 'type="submit"'.
+        'action' is the resourece/URL where data is to be sent for processing when the form is submitted.
+            'action=<empty string>' will submit the form back to the current page URL
+        "POST" method used so that form data are included in the body of the form and sent to the server
+    -->
+    {% csrf_token %}
+        <!--required on all Djangot templates that uses 'POST' method, to reduce the chance of forms being hijacked by malicious users-->
+    <table>
+        <!--https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table -->
+        {{ form.as_table }}
+            <!--every field is defined in its own table row-->
+    </table>
+    <input type="submit" value="Submit" />
+        <!--
+            'submit' type will be displayed as a button by default that can be pressed by the user to upload the data in all the other input elements in the form to the server
+            'Submit' value is what will be diplayed on the button
+        -->
+    
+</form>
+{% endblock %}

@@ -1,6 +1,12 @@
 from core.models import Category, Deck, User, Card, Quiz
 from django.views import generic
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.decorators.http import require_http_methods
+from django.views.generic.edit import CreateView
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 # Create your views here.
 
@@ -69,3 +75,14 @@ def quiz_view(request, slug):
     }
 
     return render(request, 'core/quiz.html', context=context)
+
+class CardCreate(LoginRequiredMixin, CreateView):
+    """
+    Form for creating a new card. Requires login. 
+    """
+    model = Card
+        # define the associated model
+    fields = ['question', 'answer']
+        # specify the fields to dislay in the form
+
+    
