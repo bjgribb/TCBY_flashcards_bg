@@ -69,7 +69,7 @@ html {
 /* Index page */
 .intro {
     padding: 1rem 3rem 1rem 3rem;
-    border-bottom: darkcyan;
+    border-bottom: 1px solid darkcyan;
 }
 
 .index-category-menu-item {
@@ -138,6 +138,10 @@ html {
 }
 
 /* Quiz detail page */
+.deck-title {
+    padding: 1rem 3rem 1rem 3rem;
+}
+
 .play-quiz {
     display: flex;
     flex-direction: column;
