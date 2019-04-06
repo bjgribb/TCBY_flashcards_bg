@@ -4,13 +4,12 @@
 <div class="intro">
 <h2>Test Yourself</h2>
 <p>Just create an account to start collecting your flashcard decks. Once you are logged in, you can quiz yourself.</p>
-</div>
 
 <section class="category-nav">
-    <p>Decks by category:</p>
+    <h3>Decks by category:</h3>
     {% if categories %}
       {% for category in categories %}
-      <p>
+      <p class="index-category-menu-item">
         <a href="{{ category.get_absolute_url }}">{{ category }}</a>
       </p>
       {% endfor %}
