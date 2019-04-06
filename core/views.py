@@ -9,6 +9,7 @@ from django.views.decorators.http import require_http_methods
 from django.views.generic.edit import CreateView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+import json
 
 # Create your views here.
 
@@ -78,21 +79,6 @@ def quiz_view(request, slug):
 
     return render(request, 'core/quiz.html', context=context)
 
-def get_cards(request):
-    cards = Card.objects.all()
-    return JsonResponse({'card_dict': [(card.question, card.answer) for card in cards]})
-
-def get_card_data(request, slug):
-    deck = get_object_or_404(Deck, slug=slug)
-    cards = deck.card.all()
-    return JsonResponse({'deck_cards': [(card.question, card.answer) for card in cards]})
-
-def quiz_play(request, slug):
-    deck = get_object_or_404(Deck, slug=slug)
-    flashcards = serializers.serialize('json', deck.objects.get(slug=slug).deck.card.all())
-    return render(request, 'core/quiz2.html', {
-        'question': flashcards, 'answer': deck.card.answer,
-    })
 class CardCreate(LoginRequiredMixin, CreateView):
     """
     Form for creating a new card. Requires login. 
@@ -102,4 +88,7 @@ class CardCreate(LoginRequiredMixin, CreateView):
     fields = ['question', 'answer']
         # specify the fields to dislay in the form
 
-    
+def get_card_data(request, slug):
+    deck = get_object_or_404(Deck, slug=slug)
+    cards = deck.card.all()
+    return JsonResponse({'deck_cards': [(card.question, card.answer) for card in cards]})
