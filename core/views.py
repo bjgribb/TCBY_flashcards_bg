@@ -1,5 +1,5 @@
 from core.models import Category, Deck, User, Card, Quiz
-from core.forms import NewCardForm
+from core.forms import NewCardForm, NewDeckForm
 from django.views import generic
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -103,3 +103,23 @@ def new_card(request):
     return render(request, 'core/card_form.html', {"form": new_card_form})
 
     
+def new_deck(request):
+    new_deck_form = NewDeckForm()
+    if request.method == 'POST':
+        new_deck_form = NewDeckForm(data=request.POST)
+
+        if new_deck_form.is_valid():
+            title = request.POST.get('deck_name', '')
+
+            deck = Deck.objects.create(
+                title=title,
+                creator=request.user,
+            )
+
+            deck.save()
+
+            return HttpResponseRedirect(reverse('user_list'))
+    else:
+        new_deck_form = NewDeckForm()
+
+    return render(request, 'core/deck_form.html', {"form": new_deck_form})
