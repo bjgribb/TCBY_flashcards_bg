@@ -1,6 +1,6 @@
 // const cardData = '/core/get_cards/'
 const Url = document.URL
-const slug = Url.concat('/get_card_data/')
+const slug = Url.concat('/flashcards/')
 const cardDisplay = query('.card-display')
 
 function query (selector) {
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 function getDeckCards () {
-  let promise = fetch('/core/quiz/roman-art/get_card_data/').then(function (response) {
+  let promise = fetch('/core/quiz/roman-art/flashcards/').then(function (response) {
     if (!response.ok) {
       throw Error(response.statusText)
     }
@@ -29,12 +29,11 @@ function getDeckCards () {
 }
 
 function getQuestionAnswer () {
-  getDeckCards('/core/quiz/roman-art/get_card_data/')
+  getDeckCards('/core/quiz/roman-art/flashcards/')
     .then(cardData => {
       for (let card of Object.values((cardData))) {
         for (let data of card) {
           for (let question of data) {
-            console.log(question)
             cardDisplay.innerText = question
           }
         }

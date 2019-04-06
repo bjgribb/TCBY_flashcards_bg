@@ -2,6 +2,7 @@ from core.models import Category, Deck, User, Card, Quiz
 from django.views import generic
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
+from django.core import serializers
 
 # Create your views here.
 
@@ -79,3 +80,10 @@ def get_card_data(request, slug):
     deck = get_object_or_404(Deck, slug=slug)
     cards = deck.card.all()
     return JsonResponse({'deck_cards': [(card.question, card.answer) for card in cards]})
+
+def quiz_play(request, slug):
+    deck = get_object_or_404(Deck, slug=slug)
+    flashcards = serializers.serialize('json', deck.objects.get(slug=slug).deck.card.all())
+    return render(request, 'core/quiz2.html', {
+        'question': flashcards, 'answer': deck.card.answer,
+    })

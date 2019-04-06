@@ -8,4 +8,5 @@ urlpatterns = [
       path('quiz/<slug:slug>', views.quiz_view, name='quiz-view'),
       # path('get_cards/', views.get_cards, name='get_cards'),
       path('quiz/<slug:slug>/get_card_data/', views.get_card_data, name='get_card_data'),
+      path('quiz/<slug:slug>/flashcards/', views.quiz_play, name='quiz_play')
 ]
