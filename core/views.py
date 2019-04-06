@@ -1,4 +1,5 @@
 from core.models import Category, Deck, User, Card, Quiz
+from core.forms import NewCardForm
 from django.views import generic
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -76,13 +77,29 @@ def quiz_view(request, slug):
 
     return render(request, 'core/quiz.html', context=context)
 
-class CardCreate(LoginRequiredMixin, CreateView):
-    """
-    Form for creating a new card. Requires login. 
-    """
-    model = Card
-        # define the associated model
-    fields = ['question', 'answer']
-        # specify the fields to dislay in the form
+def new_card(request):
+    new_card_form = NewCardForm()
+    if request.method == 'POST':
+        new_card_form = NewCardForm(data=request.POST)
+
+        if new_card_form.is_valid():
+            # https://docs.djangoproject.com/en/2.2/ref/forms/api/#django.forms.Form.is_valid
+            question = request.POST.get('question', '')
+                # https://docs.djangoproject.com/en/2.1/ref/request-response/#django.http.HttpRequest.POST
+                # https://docs.djangoproject.com/en/2.1/ref/request-response/#django.http.QueryDict.get
+            answer = request.POST.get('answer', '')
+
+            card = Card.objects.create(
+                question=question,
+                answer=answer,
+            )
+
+            card.save()
+
+            return HttpResponseRedirect(reverse('user_list'))
+    else:
+        new_card_form = NewCardForm()
+
+    return render(request, 'core/card_form.html', {"form": new_card_form})
 
     
