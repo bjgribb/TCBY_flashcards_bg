@@ -11,6 +11,7 @@ from django.views.generic.edit import CreateView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import json
+from django import forms
 
 # Create your views here.
 
@@ -91,12 +92,16 @@ def new_card(request):
                 # https://docs.djangoproject.com/en/2.1/ref/request-response/#django.http.HttpRequest.POST
                 # https://docs.djangoproject.com/en/2.1/ref/request-response/#django.http.QueryDict.get
             answer = request.POST.get('answer', '')
-
+            query_dict_copy = request.POST.copy()
+                # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict
+            deck_keys = query_dict_copy.pop('decks')
+                # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict.pop
             card = Card.objects.create(
                 question=question,
                 answer=answer,
             )
-
+            for key in deck_keys:
+                card.decks.add(Deck.objects.get(pk=key))
             card.save()
 
             return HttpResponseRedirect(reverse('user_list'))
@@ -105,29 +110,27 @@ def new_card(request):
 
     return render(request, 'core/card_form.html', {"form": new_card_form})
 
-    
 def new_deck(request):
     new_deck_form = NewDeckForm()
     if request.method == 'POST':
-        new_deck_form = NewDeckForm(data=request.POST)
-
+        new_deck_form = NewDeckForm(request.POST)
         if new_deck_form.is_valid():
             title = request.POST.get('deck_name', '')
-            categories = request.POST.getlist('categories', '')
+            query_dict_copy = request.POST.copy()
+            category_keys = query_dict_copy.pop('categories')
             deck = Deck.objects.create(
                 title=title,
                 creator=request.user,
             )
-
-            # for key in categories:
-            #     deck.categories.add(category)
+            for key in category_keys:
+                deck.categories.add(Category.objects.get(pk=key))
             deck.save()
-
             return HttpResponseRedirect(reverse('user_list'))
     else:
         new_deck_form = NewDeckForm()
 
     return render(request, 'core/deck_form.html', {"form": new_deck_form})
+
 def get_card_data(request, slug):
     deck = get_object_or_404(Deck, slug=slug)
     cards = deck.card.all()
