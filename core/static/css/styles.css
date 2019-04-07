@@ -107,6 +107,7 @@ html {
     line-height: 10rem;
     margin: 1rem;
     border: 1px solid darkcyan;
+    border-radius: 10px;
 }
 
 /* Category detail page */
@@ -163,7 +164,8 @@ html {
     line-height: 400px;
     padding: 1rem;
     margin: 1rem;
-    border: 2px solid darkcyan;
+    border: 3px solid darkcyan;
+    border-radius: 15px;
 }
 
 .score-display {
