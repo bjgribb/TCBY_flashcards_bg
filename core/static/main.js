@@ -65,6 +65,8 @@ function getQuestionAnswer (cardDataUrl) {
 
 function showAnswer (shuffledDeck) {
   query('.answer-button').addEventListener('click', function () {
+    showButtons(correctButton)
+    showButtons(incorrectButton)
     cardBack.innerText = shuffledDeck[0][1]
     shuffledDeck.shift()
   })
@@ -72,6 +74,9 @@ function showAnswer (shuffledDeck) {
 
 function showQuestion (shuffledDeck) {
   questionButton.addEventListener('click', function () {
+    hideButtons(correctButton)
+    hideButtons(incorrectButton)
+    cardBack.innerText = ' '
     if (shuffledDeck.length === 0) {
       cardFront.innerText = "You've finished!"
       questionButton.innerText = 'Done'
