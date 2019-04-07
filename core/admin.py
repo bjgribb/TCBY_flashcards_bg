@@ -4,11 +4,11 @@ from core.models import Category, Deck, Card, Quiz
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name','display_deck')
 
 @admin.register(Deck)
 class DeckAdmin(admin.ModelAdmin):
-    list_display = ('title', 'public')
+    list_display = ('title', 'public', 'display_card')
 
 @admin.register(Card)
 class CardAdmin(admin.ModelAdmin):
