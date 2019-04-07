@@ -29,6 +29,10 @@ class Category(models.Model):
             n += 1
             slug = base_slug + "-" + str(n)
         self.slug =slug
+    
+    def display_deck(self):
+        """Create a string for Decks. This is required to display Decks in Admin."""
+        return ', '.join(deck.title for deck in self.decks.all()[:10])
 
     def get_absolute_url(self):
         """Returns the url to access a particular category instance."""
@@ -87,6 +91,10 @@ class Deck(models.Model):
     
     def __str__(self):
         return self.title
+
+    def display_card(self):
+        """Create a string for Cards. This is required to display Cards in Admin."""
+        return ', '.join(card.question for card in self.card.all()[:10])
 
 class Card(models.Model):
     question = models.CharField(max_length=500)
