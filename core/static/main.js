@@ -21,6 +21,21 @@ function getDeckCards (cardDataUrl) {
   return promise
 }
 
+// function getQuestionAnswer (cardDataUrl) {
+//   getDeckCards(cardDataUrl)
+//     .then(cardData => {
+//       for (let card of Object.values(cardData)) {
+//         query('.question-button').addEventListener('click', function () {
+//           let idx = Math.floor(Math.random() * card.length)
+//           cardDisplay.innerText = card[idx][0]
+//           query('.answer-button').addEventListener('click', function () {
+//             cardDisplay.innerText = card[idx][1]
+//           })
+//         })
+//       }
+//     })
+// }
+
 function getQuestionAnswer (cardDataUrl) {
   getDeckCards(cardDataUrl)
     .then(cardData => {
