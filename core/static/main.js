@@ -41,14 +41,29 @@ function getQuestionAnswer (cardDataUrl) {
     .then(cardData => {
       for (let card of Object.values(cardData)) {
         query('.question-button').addEventListener('click', function () {
-          let idx = Math.floor(Math.random() * card.length)
+          const idx = setIdx(card)
           cardDisplay.innerText = card[idx][0]
-          query('.answer-button').addEventListener('click', function () {
-            cardDisplay.innerText = card[idx][1]
-          })
+          showAnswer(card, idx)
         })
       }
     })
+}
+
+// function showQuestion (card, idx) {
+//   query('.question-button').addEventListener('click', function () {
+//     cardDisplay.innerText = card[idx][0]
+//   })
+// }
+
+function setIdx (card) {
+  let idx = Math.floor(Math.random() * card.length)
+  return idx
+}
+
+function showAnswer (card, idx) {
+  query('.answer-button').addEventListener('click', function () {
+    cardDisplay.innerText = card[idx][1]
+  })
 }
 
 document.addEventListener('DOMContentLoaded', function () {
