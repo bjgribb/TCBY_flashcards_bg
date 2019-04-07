@@ -16,25 +16,23 @@ html {
     padding: 1rem 3rem 1rem 3rem;
 }
 
-.header-title {
+.header-title, .header-title a {
     font-family: 'Fascinate Inline', cursive;
-    font-size: 3rem;
-    align-items: flex-start;
+    font-size: 3.5rem;
+    height: inherit;
+    color: mintcream;
+    text-shadow: .2rem .2rem orange;
 }
 
 .page-header {
     display: flex;
-    padding: 5rem 3rem 5rem 3rem;
+    padding: 4rem 3rem 4rem 3rem;
     border-bottom: 2px solid darkcyan;
-    background-image: linear-gradient(to bottom,
-    rgba(183, 216, 226, 0.289), rgba(183, 216, 226, 0.2)
-    ), url(https://i.ibb.co/pyh9KHY/brandi-redd-122054-unsplash.jpg);
-    background-repeat: no-repeat;
-    background-position: bottom;
-    background-size: cover;
+    background: url(https://i.ibb.co/pyh9KHY/brandi-redd-122054-unsplash.jpg) 50%/ cover;
+    overflow: hidden;
 }
 
-.page-header a {
+.registration-options a {
     color: darkcyan;
     text-decoration: none;
 }
@@ -109,6 +107,7 @@ html {
     line-height: 10rem;
     margin: 1rem;
     border: 1px solid darkcyan;
+    border-radius: 10px;
 }
 
 /* Category detail page */
@@ -131,6 +130,7 @@ html {
     line-height: 10rem;
     margin: 1rem;
     border: 1px solid darkcyan;
+    border-radius: 10px;
 }
 
 .category-deck-creator {
@@ -144,34 +144,63 @@ html {
 
 .play-quiz {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
-#play-button {
+.question-button {
     text-align: center;
     justify-content: center;
     padding: 1rem;
+    border: 7px dotted hotpink;
 }
 
-.quiz-display-elements {
+.question-button:hover {
+    cursor: pointer;
+}
+
+.card-main-container {
     display: flex;
     flex-direction: column;
+    border-radius: 15px;
 }
 
 .card-display {
+    font-size: 2.5rem;
     width: 600px;
     height: 400px;
     text-align: center;
-    line-height: 400px;
-    padding: 1rem;
-    margin: 1rem;
-    border: 2px solid darkcyan;
+    padding: 3rem 1rem 1rem 1rem;
+    margin: .5rem;
+    border: 3px solid darkcyan;
+    box-shadow: 3px 3px rgba(0, 0, 0, .4),
+                5px 5px rgba(0, 0, 0, .2),
+                8px 8px rgba(0, 0, 0, .1);
+    border-radius: 15px;
+}
+
+.play-navigation {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .score-display {
-    align-self: flex-start;
     padding: .75rem;
-    border: 1px dashed black;
+    border: 2px dotted hotpink;
+    border-radius: 10px;
+}
+
+.score-display:hover, .answer-button:hover {
+    cursor: pointer;
+}
+
+.play-navigation p {
+    text-align: center;
+    border: 2px dotted hotpink;
+    border-radius: 10px;
+    padding: .75rem;
+    margin: 2rem 0 2rem 0;
+    align-items: center; 
 }
 
 /* Footer */
@@ -185,13 +214,49 @@ html {
     padding: 1rem 3rem 3rem 3rem;
 }
 
-.play-navigation {
-    display: flex;
+@media (max-width: 1024px) {
+
+    .header-title, .header-title a {
+        font-family: 'Fascinate Inline', cursive;
+        font-size: 2.5rem;
+        height: inherit;
+        color: mintcream;
+        text-shadow: .2rem .2rem orange;
+    }
 }
 
-.play-navigation p {
-    margin-right: 1rem;
-    margin-left: 1rem;
-    border: 1px dashed black;
-    padding: .75rem;
+@media (max-width: 480px) {
+
+    .registration-options {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        list-style-type: none;
+    }
+
+    .user-profile-link a {
+        font-size: .75rem;
+        background-color: mintcream;
+        color: orange;
+        font-weight: 600;
+        padding: .5rem;
+        border-radius: 7%;
+        border: 1px solid darkcyan;
+    }
+    
+    .registration-item {
+        font-size: .75rem;
+        background-color: mintcream;
+        padding: .5rem;
+        border-radius: 7%;
+        border: 1px solid darkcyan;
+    }
+
+    .header-title, .header-title a {
+        font-family: 'Fascinate Inline', cursive;
+        font-size: 2rem;
+        height: inherit;
+        color: mintcream;
+        text-shadow: .2rem .2rem orange;
+    }
 }
