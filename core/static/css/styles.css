@@ -154,6 +154,10 @@ html {
     border: 7px dotted hotpink;
 }
 
+.question-button:hover {
+    cursor: pointer;
+}
+
 .card-main-container {
     display: flex;
     flex-direction: column;
@@ -165,8 +169,7 @@ html {
     width: 600px;
     height: 400px;
     text-align: center;
-    line-height: 400px;
-    padding: 1rem;
+    padding: 3rem 1rem 1rem 1rem;
     margin: .5rem;
     border: 3px solid darkcyan;
     box-shadow: 3px 3px rgba(0, 0, 0, .4),
@@ -185,6 +188,10 @@ html {
     padding: .75rem;
     border: 2px dotted hotpink;
     border-radius: 10px;
+}
+
+.score-display:hover, .answer-button:hover {
+    cursor: pointer;
 }
 
 .play-navigation p {
