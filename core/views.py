@@ -96,7 +96,7 @@ def new_card(request):
             answer = request.POST.get('answer', '')
             query_dict_copy = request.POST.copy()
                 # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict
-            deck_keys = query_dict_copy.pop('decks')
+            deck_keys = query_dict_copy.pop('existing_decks')
                 # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict.pop
             card = Card.objects.create(
                 question=question,
@@ -120,13 +120,21 @@ def new_deck(request):
             title = request.POST.get('deck_name', '')
             query_dict_copy = request.POST.copy()
             category_keys = query_dict_copy.pop('categories')
+            card_keys = query_dict_copy.pop('existing_cards')
             deck = Deck.objects.create(
                 title=title,
                 creator=request.user,
             )
             for key in category_keys:
                 deck.categories.add(Category.objects.get(pk=key))
+
             deck.save()
+
+            for key in card_keys:
+                card = Card.objects.get(pk=key)
+                card.decks.add(deck)
+                card.save()
+            
             return HttpResponseRedirect(reverse('user_list'))
     else:
         new_deck_form = NewDeckForm()

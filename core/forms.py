@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class NewCardForm(forms.Form):
     question = forms.CharField(max_length=500)
     answer = forms.CharField(max_length=500)
-    decks = forms.ModelMultipleChoiceField(queryset=Deck.objects.all())
+    existing_decks = forms.ModelMultipleChoiceField(queryset=Deck.objects.all())
  
     def clean_question(self):
         data = self.cleaned_data['question']
@@ -29,8 +29,9 @@ class NewCardForm(forms.Form):
 
 class NewDeckForm(forms.Form):
     deck_name = forms.CharField(max_length=200)
-    categories = forms.ModelMultipleChoiceField(queryset=Category.objects.all())
+    existing_cards = forms.ModelMultipleChoiceField(queryset=Card.objects.all())
         # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#fields-which-handle-relationships
+    categories = forms.ModelMultipleChoiceField(queryset=Category.objects.all())
 
     def clean_deck_name(self):
         data = self.cleaned_data['deck_name']
