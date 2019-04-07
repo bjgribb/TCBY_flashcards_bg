@@ -84,9 +84,11 @@ def quiz_view(request, slug):
     return render(request, 'core/quiz.html', context=context)
 
 def new_card(request):
-    new_card_form = NewCardForm()
+    new_card_form = NewCardForm(request.user)
+        ### https://www.programcreek.com/python/example/59672/django.forms.ModelMultipleChoiceField Example 2 ###
     if request.method == 'POST':
-        new_card_form = NewCardForm(data=request.POST)
+        new_card_form = NewCardForm(request.user, request.POST)
+            ### https://www.programcreek.com/python/example/59672/django.forms.ModelMultipleChoiceField Example 2 ###
 
         if new_card_form.is_valid():
             # https://docs.djangoproject.com/en/2.2/ref/forms/api/#django.forms.Form.is_valid
@@ -96,7 +98,7 @@ def new_card(request):
             answer = request.POST.get('answer', '')
             query_dict_copy = request.POST.copy()
                 # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict
-            deck_keys = query_dict_copy.pop('decks')
+            deck_keys = query_dict_copy.pop('existing_decks')
                 # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict.pop
             card = Card.objects.create(
                 question=question,
@@ -108,7 +110,8 @@ def new_card(request):
 
             return HttpResponseRedirect(reverse('user_list'))
     else:
-        new_card_form = NewCardForm()
+        new_card_form = NewCardForm(request.user)
+            ### https://www.programcreek.com/python/example/59672/django.forms.ModelMultipleChoiceField Example 2 ###
 
     return render(request, 'core/card_form.html', {"form": new_card_form})
 
@@ -127,6 +130,16 @@ def new_deck(request):
             for key in category_keys:
                 deck.categories.add(Category.objects.get(pk=key))
             deck.save()
+
+            if query_dict_copy.get('existing_cards'):
+                card_keys = query_dict_copy.pop('existing_cards')
+                for key in card_keys:
+                    card = Card.objects.get(pk=key)
+                    card.decks.add(deck)
+                    card.save()
+            else:
+                pass
+            
             return HttpResponseRedirect(reverse('user_list'))
     else:
         new_deck_form = NewDeckForm()
