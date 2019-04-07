@@ -51,10 +51,12 @@ def deck_detail_view(request):
 def user_list_view(request):
     decks = Deck.objects.all()
     users = User.objects.all()
+    user_created_decks = Deck.objects.filter(creator=request.user)
 
     context = {
         'decks': decks,
         'users': users,
+        'user_created_decks': user_created_decks,
     }
 
     return render(request, 'core/user_list.html', context=context)

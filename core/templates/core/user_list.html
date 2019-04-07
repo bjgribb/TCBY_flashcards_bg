@@ -16,15 +16,15 @@
 
     <h4>Below are decks you've created:</h4>
 
-        {% if user == deck.creator %}
-            <ul class="list-user-decks">
-                {% for deck in decks %}
-                    <li class="user-deck-item"><a href="{{ deck.get_absolute_url }}">{{ deck.title }}</a></li>
-                {% endfor %}
-            </ul> 
+    <ul class="list-user-decks">   
+        {% if user_created_decks %}
+            {% for deck in user_created_decks %}
+                <li class="user-deck-item"><a href="{{ deck.get_absolute_url }}">{{ deck.title }}</a></li>
+            {% endfor %}
         {% else %}
             <p class="create-deck-link">Create Your Own Deck</p>
         {% endif %}
+    </ul> 
        
     <h4>Below are available public decks:</h4>
 
@@ -40,5 +40,3 @@
     {% endif %}
     
 {% endblock %}
-
-
