@@ -21,6 +21,11 @@ function hideButtons () {
   console.log('correcthide')
 }
 
+function showButtons () {
+  correctButton.hidden = false
+  incorrectButton.hidden = false
+}
+
 function getDeckCards (cardDataUrl) {
   let promise = fetch(cardDataUrl).then(function (response) {
     if (!response.ok) {
@@ -39,6 +44,7 @@ function getQuestionAnswer (cardDataUrl) {
           let idx = Math.floor(Math.random() * card.length)
           cardFront.innerText = card[idx][0]
           query('.answer-button').addEventListener('click', function () {
+            c
             cardBack.innerText = card[idx][1]
           })
         })

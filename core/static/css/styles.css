@@ -44,7 +44,8 @@ html {
 }
 
 .registration-options a:hover {
-    font-size: 110%;
+    text-shadow: 1px 2px 3px rgba(0,0,0,0.2),
+                0px -3px 10px rgba(255,255,255,0.5);
     text-decoration: underline;
 }
 
