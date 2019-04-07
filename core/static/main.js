@@ -3,10 +3,12 @@ const slug = document.URL.split('/')[5]
 const cardDataUrl = `/core/quiz/${slug}/get_card_data/`
 const cardDisplay = query('.card-display')
 const questionButton = query('.question-button')
+const scoreDisplay = query('.score-display')
 const cardFront = query('.card-front')
 const cardBack = query('.card-back')
 let correctButton = query('.ask-if-correct')
 let incorrectButton = query('.ask-if-wrong')
+let numCorrect = 0
 
 function query (selector) {
   return document.querySelector(selector)
@@ -79,11 +81,19 @@ function showQuestion (shuffledDeck) {
     cardBack.innerText = ' '
     if (shuffledDeck.length === 0) {
       cardFront.innerText = "You've finished!"
-      questionButton.innerText = 'Done'
+      hideButtons(questionButton)
     } else {
       cardFront.innerText = shuffledDeck[0][0]
       questionButton.innerText = 'Next Question'
     }
+  })
+}
+
+function updateScore (numCorrect) {
+  correctButton.addEventListener('click', function () {
+    console.log(numCorrect)
+    numCorrect++
+    scoreDisplay.innerText = numCorrect
   })
 }
 
@@ -94,7 +104,7 @@ function showQuestion (shuffledDeck) {
 document.addEventListener('DOMContentLoaded', function () {
   hideButtons(correctButton)
   hideButtons(incorrectButton)
-  // hideButtons(cardBack)
   getDeckCards(cardDataUrl)
   getQuestionAnswer(cardDataUrl)
+  updateScore(numCorrect)
 })
