@@ -15,15 +15,13 @@ function queryAll (selector) {
   return document.querySelectorAll(selector)
 }
 
-function hideButtons () {
-  correctButton.hidden = true
-  incorrectButton.hidden = true
+function hideButtons (button) {
+  button.hidden = true
   console.log('correcthide')
 }
 
-function showButtons () {
-  correctButton.hidden = false
-  incorrectButton.hidden = false
+function showButtons (button) {
+  button.hidden = false
 }
 
 function getDeckCards (cardDataUrl) {
@@ -44,7 +42,6 @@ function getQuestionAnswer (cardDataUrl) {
           let idx = Math.floor(Math.random() * card.length)
           cardFront.innerText = card[idx][0]
           query('.answer-button').addEventListener('click', function () {
-            c
             cardBack.innerText = card[idx][1]
           })
         })
@@ -57,7 +54,8 @@ function getQuestionAnswer (cardDataUrl) {
 // }
 
 document.addEventListener('DOMContentLoaded', function () {
-  hideButtons()
+  hideButtons(correctButton)
+  hideButtons(incorrectButton)
   getDeckCards(cardDataUrl)
   getQuestionAnswer(cardDataUrl)
 })
