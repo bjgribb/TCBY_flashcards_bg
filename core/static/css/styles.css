@@ -44,7 +44,8 @@ html {
 }
 
 .registration-options a:hover {
-    font-size: 110%;
+    text-shadow: 1px 2px 3px rgba(0,0,0,0.2),
+                0px -3px 10px rgba(255,255,255,0.5);
     text-decoration: underline;
 }
 
@@ -82,7 +83,6 @@ html {
 .welcome-user {
     display: flex;
     flex-direction: row;
-    /* justify-content: start; */
     align-content: flex-start;
     padding: 1rem 3rem 1rem 3rem;
 }
@@ -145,6 +145,7 @@ html {
 .play-quiz {
     display: flex;
     flex-direction: row;
+    margin-bottom: 2rem;
 }
 
 .question-button {
@@ -166,8 +167,10 @@ html {
 
 .card-display {
     font-size: 2.5rem;
-    width: 600px;
-    height: 400px;
+    min-width: 600px;
+    max-width: 600px;
+    min-height: 400px;
+    max-height: 400px;
     text-align: center;
     padding: 3rem 1rem 1rem 1rem;
     margin: .5rem;
@@ -223,6 +226,22 @@ html {
         color: mintcream;
         text-shadow: .2rem .2rem orange;
     }
+
+    .card-display {
+        font-size: 2.5rem;
+        min-width: 350px;
+        max-width: 600px;
+        min-height: 200px;
+        max-height: 400px;
+        text-align: center;
+        padding: 3rem 1rem 1rem 1rem;
+        margin: .5rem;
+        border: 3px solid darkcyan;
+        box-shadow: 3px 3px rgba(0, 0, 0, .4),
+                    5px 5px rgba(0, 0, 0, .2),
+                    8px 8px rgba(0, 0, 0, .1);
+        border-radius: 15px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -258,5 +277,33 @@ html {
         height: inherit;
         color: mintcream;
         text-shadow: .2rem .2rem orange;
+    }
+
+    .card-display {
+        font-size: 2.5rem;
+        min-width: 350px;
+        max-width: 600px;
+        min-height: 200px;
+        max-height: 400px;
+        text-align: center;
+        padding: 3rem 1rem 1rem 1rem;
+        margin: .5rem;
+        border: 3px solid darkcyan;
+        box-shadow: 3px 3px rgba(0, 0, 0, .4),
+                    5px 5px rgba(0, 0, 0, .2),
+                    8px 8px rgba(0, 0, 0, .1);
+        border-radius: 15px;
+    }
+
+    .play-quiz {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+    }
+
+    .play-navigation {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
 }
