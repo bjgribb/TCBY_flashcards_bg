@@ -1,5 +1,5 @@
 * {
-    border: 1px dotted grey;
+    /* border: 1px dotted grey; */
     margin: auto;
     padding: 0;
 }
@@ -26,7 +26,7 @@ html {
 
 .page-header {
     display: flex;
-    padding: 5rem 3rem 5rem 3rem;
+    padding: 4rem 3rem 4rem 3rem;
     border-bottom: 2px solid darkcyan;
     background: url(https://i.ibb.co/pyh9KHY/brandi-redd-122054-unsplash.jpg) 50%/ cover;
     overflow: hidden;
@@ -143,46 +143,54 @@ html {
 
 .play-quiz {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
-#play-button {
+.question-button {
     text-align: center;
     justify-content: center;
     padding: 1rem;
+    border: 7px dotted hotpink;
 }
 
-.quiz-display-elements {
+.card-main-container {
     display: flex;
     flex-direction: column;
+    border-radius: 15px;
 }
 
 .card-display {
+    font-size: 2.5rem;
     width: 600px;
     height: 400px;
     text-align: center;
     line-height: 400px;
     padding: 1rem;
-    margin: 1rem;
+    margin: .5rem;
     border: 3px solid darkcyan;
+    box-shadow: 3px 3px rgba(0, 0, 0, .4),
+                5px 5px rgba(0, 0, 0, .2),
+                8px 8px rgba(0, 0, 0, .1);
     border-radius: 15px;
-}
-
-.score-display {
-    align-self: flex-start;
-    padding: .75rem;
-    border: 1px dashed black;
 }
 
 .play-navigation {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.score-display {
+    padding: .75rem;
+    border: 2px dotted hotpink;
 }
 
 .play-navigation p {
-    margin-right: 1rem;
-    margin-left: 1rem;
-    border: 1px dashed black;
+    text-align: center;
+    border: 2px dotted hotpink;
     padding: .75rem;
+    margin: 2rem 0 2rem 0;
+    align-items: center; 
 }
 
 /* Footer */
