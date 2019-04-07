@@ -83,7 +83,6 @@ html {
 .welcome-user {
     display: flex;
     flex-direction: row;
-    /* justify-content: start; */
     align-content: flex-start;
     padding: 1rem 3rem 1rem 3rem;
 }
@@ -169,7 +168,9 @@ html {
 .card-display {
     font-size: 2.5rem;
     min-width: 600px;
+    max-width: 600px;
     min-height: 400px;
+    max-height: 400px;
     text-align: center;
     padding: 3rem 1rem 1rem 1rem;
     margin: .5rem;
