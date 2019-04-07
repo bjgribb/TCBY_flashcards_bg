@@ -41,9 +41,12 @@ function getQuestionAnswer (cardDataUrl) {
         query('.question-button').addEventListener('click', function () {
           let idx = Math.floor(Math.random() * card.length)
           cardFront.innerText = card[idx][0]
-          query('.answer-button').addEventListener('click', function () {
-            cardBack.innerText = card[idx][1]
+          $(cardDisplay).justFlipIt({
+            Template: cardBack
           })
+          // query('.answer-button').addEventListener('click', function () {
+          //   cardBack.innerText = card[idx][1]
+          // })
         })
       }
     })
@@ -56,6 +59,7 @@ function getQuestionAnswer (cardDataUrl) {
 document.addEventListener('DOMContentLoaded', function () {
   hideButtons(correctButton)
   hideButtons(incorrectButton)
+  hideButtons(cardBack)
   getDeckCards(cardDataUrl)
   getQuestionAnswer(cardDataUrl)
 })
