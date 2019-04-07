@@ -6,10 +6,18 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
 class NewCardForm(forms.Form):
+
+    
     question = forms.CharField(max_length=500)
     answer = forms.CharField(max_length=500)
-    existing_decks = forms.ModelMultipleChoiceField(queryset=Deck.objects.all())
- 
+    # existing_decks = forms.ModelMultipleChoiceField(queryset=Deck.objects.filter(creator=self.user))
+        # https://docs.djangoproject.com/en/2.1/topics/db/queries/#retrieving-specific-objects-with-filters
+    
+    ### https://www.programcreek.com/python/example/59672/django.forms.ModelMultipleChoiceField Example 2 ###
+    def __init__(self, user=None, *args, **kwargs):
+        super(NewCardForm, self).__init__(*args, **kwargs)
+        self.fields['existing_decks'] = forms.ModelMultipleChoiceField(queryset=Deck.objects.filter(creator=user))
+
     def clean_question(self):
         data = self.cleaned_data['question']
             # https://docs.djangoproject.com/en/2.2/ref/forms/validation/
@@ -29,7 +37,7 @@ class NewCardForm(forms.Form):
 
 class NewDeckForm(forms.Form):
     deck_name = forms.CharField(max_length=200)
-    existing_cards = forms.ModelMultipleChoiceField(queryset=Card.objects.all())
+    existing_cards = forms.ModelMultipleChoiceField(required=False, queryset=Card.objects.all())
         # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#fields-which-handle-relationships
     categories = forms.ModelMultipleChoiceField(queryset=Category.objects.all())
 
