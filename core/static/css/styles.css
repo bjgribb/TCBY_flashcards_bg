@@ -1,5 +1,5 @@
 * {
-    /* border: 1px dotted grey; */
+    border: 1px dotted grey;
     margin: auto;
     padding: 0;
 }
@@ -16,25 +16,23 @@ html {
     padding: 1rem 3rem 1rem 3rem;
 }
 
-.header-title {
+.header-title, .header-title a {
     font-family: 'Fascinate Inline', cursive;
-    font-size: 3rem;
-    align-items: flex-start;
+    font-size: 3.5rem;
+    height: inherit;
+    color: mintcream;
+    text-shadow: .2rem .2rem orange;
 }
 
 .page-header {
     display: flex;
     padding: 5rem 3rem 5rem 3rem;
     border-bottom: 2px solid darkcyan;
-    background-image: linear-gradient(to bottom,
-    rgba(183, 216, 226, 0.289), rgba(183, 216, 226, 0.2)
-    ), url(https://i.ibb.co/pyh9KHY/brandi-redd-122054-unsplash.jpg);
-    background-repeat: no-repeat;
-    background-position: bottom;
-    background-size: cover;
+    background: url(https://i.ibb.co/pyh9KHY/brandi-redd-122054-unsplash.jpg) 50%/ cover;
+    overflow: hidden;
 }
 
-.page-header a {
+.registration-options a {
     color: darkcyan;
     text-decoration: none;
 }
@@ -174,6 +172,17 @@ html {
     border: 1px dashed black;
 }
 
+.play-navigation {
+    display: flex;
+}
+
+.play-navigation p {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    border: 1px dashed black;
+    padding: .75rem;
+}
+
 /* Footer */
 .page-footer {
     background-color: mintcream;
@@ -185,13 +194,49 @@ html {
     padding: 1rem 3rem 3rem 3rem;
 }
 
-.play-navigation {
-    display: flex;
+@media (max-width: 1024px) {
+
+    .header-title, .header-title a {
+        font-family: 'Fascinate Inline', cursive;
+        font-size: 2.5rem;
+        height: inherit;
+        color: mintcream;
+        text-shadow: .2rem .2rem orange;
+    }
 }
 
-.play-navigation p {
-    margin-right: 1rem;
-    margin-left: 1rem;
-    border: 1px dashed black;
-    padding: .75rem;
+@media (max-width: 480px) {
+
+    .registration-options {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        list-style-type: none;
+    }
+
+    .user-profile-link a {
+        font-size: .75rem;
+        background-color: mintcream;
+        color: orange;
+        font-weight: 600;
+        padding: .5rem;
+        border-radius: 7%;
+        border: 1px solid darkcyan;
+    }
+    
+    .registration-item {
+        font-size: .75rem;
+        background-color: mintcream;
+        padding: .5rem;
+        border-radius: 7%;
+        border: 1px solid darkcyan;
+    }
+
+    .header-title, .header-title a {
+        font-family: 'Fascinate Inline', cursive;
+        font-size: 2rem;
+        height: inherit;
+        color: mintcream;
+        text-shadow: .2rem .2rem orange;
+    }
 }
