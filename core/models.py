@@ -51,7 +51,7 @@ class Deck(models.Model):
     """
     Model representing deck of flashcards
     """
-    title = models.CharField(max_length=200, default="Deck")
+    title = models.CharField(max_length=200, unique=True)
     creator = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, related_name='deck')
     categories = models.ManyToManyField(to='Category', related_name='decks')
     public = models.BooleanField(default=True, editable=True)
@@ -107,4 +107,3 @@ class Card(models.Model):
     def get_absolute_url(self):
         """Returns the url to access a detail record for this card."""
         return reverse('index')
-

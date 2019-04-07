@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load staticfiles %}
 
 {% block content %}
 <h3>Add a new card</h3>
@@ -14,11 +13,9 @@
     -->
     {% csrf_token %}
         <!--required on all Djangot templates that uses 'POST' method, to reduce the chance of forms being hijacked by malicious users-->
-    <table>
         <!--https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table -->
-        {{ form.as_table }}
-            <!--every field is defined in its own table row-->
-    </table>
+    {{ form }}
+        <!--https://docs.djangoproject.com/en/2.2/topics/forms/#working-with-form-templates-->
     <input type="submit" value="Submit" />
         <!--
             'submit' type will be displayed as a button by default that can be pressed by the user to upload the data in all the other input elements in the form to the server
