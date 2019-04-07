@@ -30,8 +30,6 @@
       <ul class="registration-options">
         {% if request.user.is_authenticated %}
         <li class="user-profile-link"><a href="{% url 'user_list' %}">{{ request.user.get_username }}</a></li>
-
-        {% comment ANYONE OPPOSED TO TAKING THIS LINK OUT? %} <li class="registration-item"><a href="{% url 'account_email' %}">Change E-mail</a></li> {% endcomment %}
         <li class="registration-item"><a href="{% url 'account_logout' %}">Logout</a></li>
         {% else %}
         <li class="registration-item"><a href="{% url 'account_login' %}">Log In</a></li>
