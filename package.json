@@ -1,0 +1,8 @@
+{
+    "private": true,
+    "dependencies": {
+        "browserify": "^16.2.3",
+        "dragula": "^3.7.2",
+        "justflipit": "^1.1.2"
+    }
+}
