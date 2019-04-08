@@ -1,4 +1,7 @@
 
+// const drake = require('dragula')
+// const justFlipIt = require('justflipit')
+
 const slug = document.URL.split('/')[5]
 const cardDataUrl = `/core/quiz/${slug}/get_card_data/`
 const cardDisplay = query('.card-display')
