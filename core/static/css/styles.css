@@ -148,15 +148,26 @@ html {
     margin-bottom: 2rem;
 }
 
+.question-answer-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .question-button {
     text-align: center;
     justify-content: center;
     padding: 1rem;
     border: 7px dotted hotpink;
+    margin: 2rem 0 2rem 0;
 }
 
-.question-button:hover {
-    cursor: pointer;
+.answer-button {
+    text-align: center;
+    justify-content: center;
+    padding: 1rem;
+    border: 7px dotted darkcyan;
+    margin: 2rem 0 2rem 0;
 }
 
 .card-main-container {
@@ -181,6 +192,16 @@ html {
     border-radius: 15px;
 }
 
+.card-back {
+    color: hotpink;
+    font-size: 3rem;
+}
+
+.card-front {
+    font-style: italic;
+    border-bottom: 1px solid black;
+}
+
 .play-navigation {
     display: flex;
     flex-direction: column;
@@ -189,11 +210,11 @@ html {
 
 .score-display {
     padding: .75rem;
-    border: 2px dotted hotpink;
+    border: 2px dotted darkcyan;
     border-radius: 10px;
 }
 
-.score-display:hover, .answer-button:hover {
+.answer-button:hover, .ask-if-correct, .ask-if-wrong, .question-button:hover {
     cursor: pointer;
 }
 

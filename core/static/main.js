@@ -6,6 +6,7 @@ const questionButton = query('.question-button')
 const scoreDisplay = query('.score-display')
 const cardFront = query('.card-front')
 const cardBack = query('.card-back')
+const answerButton = query('.answer-button')
 let correctButton = query('.ask-if-correct')
 let incorrectButton = query('.ask-if-wrong')
 let numCorrect = 0
@@ -78,6 +79,7 @@ function showQuestion (shuffledDeck) {
   questionButton.addEventListener('click', function () {
     hideButtons(correctButton)
     hideButtons(incorrectButton)
+    showButtons(answerButton)
     cardBack.innerText = ' '
     if (shuffledDeck.length === 0) {
       cardFront.innerText = "You've finished!"
@@ -104,6 +106,7 @@ function updateScore (numCorrect) {
 document.addEventListener('DOMContentLoaded', function () {
   hideButtons(correctButton)
   hideButtons(incorrectButton)
+  hideButtons(answerButton)
   getDeckCards(cardDataUrl)
   getQuestionAnswer(cardDataUrl)
   updateScore(numCorrect)
