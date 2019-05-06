@@ -25,7 +25,6 @@ function queryAll (selector) {
 // function that fetchs from URL
 function hideButtons (button) {
   button.hidden = true
-  console.log('correcthide')
 }
 
 function showButtons (button) {
@@ -64,8 +63,10 @@ function getQuestionAnswer (cardDataUrl) {
     .then(cardData => {
       let array = (Object.values(cardData)[0])
       let shuffledDeck = (shuffle(array))
+      const totalDeck = shuffledDeck.length
       showQuestion(shuffledDeck)
       showAnswer(shuffledDeck)
+      updateScore(numCorrect, shuffledDeck, totalDeck)
     })
 }
 
@@ -73,38 +74,60 @@ function showAnswer (shuffledDeck) {
   query('.answer-button').addEventListener('click', function () {
     showButtons(correctButton)
     showButtons(incorrectButton)
+    hideButtons(questionButton)
+    hideButtons(answerButton)
     cardBack.innerText = shuffledDeck[0][1]
     shuffledDeck.shift()
   })
 }
 
 function showQuestion (shuffledDeck) {
-  questionButton.addEventListener('click', function () {
-    hideButtons(correctButton)
-    hideButtons(incorrectButton)
-    showButtons(answerButton)
-    cardBack.innerText = ' '
-    if (shuffledDeck.length === 0) {
-      cardFront.innerText = "You've finished!"
-      hideButtons(questionButton)
-    } else {
-      cardFront.innerText = shuffledDeck[0][0]
-      questionButton.innerText = 'Next Question'
+  document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('ask-if-correct') ||
+    (event.target.classList.contains('ask-if-wrong') ||
+    (event.target.classList.contains('question-button')))) {
+      hideButtons(correctButton)
+      hideButtons(incorrectButton)
+      showButtons(answerButton)
+      cardBack.innerText = ' '
+      if (shuffledDeck.length === 0) {
+        cardFront.innerText = "You've finished!"
+        hideButtons(questionButton)
+        hideButtons(answerButton)
+      } else {
+        cardFront.innerText = shuffledDeck[0][0]
+        hideButtons(questionButton)
+      }
     }
   })
 }
 
-function updateScore (numCorrect) {
+function updateScore (numCorrect, shuffledDeck, totalDeck) {
   correctButton.addEventListener('click', function () {
-    console.log(numCorrect)
     numCorrect++
     scoreDisplay.innerText = numCorrect
+    if (shuffledDeck.length < 1) {
+      scoreDisplay.innerText = `${numCorrect} out of ${totalDeck}`
+    }
   })
 }
 
-// function tallyCorrect () {
-//   let score = 0
-// }
+// document.addEventListener('click', function (event) {
+//   if (event.target.classList.contains('ask-if-correct') ||
+//   (event.target.classList.contains('ask-if-wrong'))) {
+//     hideButtons(correctButton)
+//     hideButtons(incorrectButton)
+//     showButtons(answerButton)
+//     cardBack.innerText = ' '
+//     if (shuffledDeck.length === 0) {
+//       cardFront.innerText = "You've finished!"
+//       hideButtons(questionButton)
+//     } else {
+//       cardFront.innerText = shuffledDeck[0][0]
+//       questionButton.innerText = 'Next Question'
+//     }
+//   }
+// })
 
 document.addEventListener('DOMContentLoaded', function () {
   hideButtons(correctButton)
@@ -112,5 +135,5 @@ document.addEventListener('DOMContentLoaded', function () {
   hideButtons(answerButton)
   getDeckCards(cardDataUrl)
   getQuestionAnswer(cardDataUrl)
-  updateScore(numCorrect)
+  // updateScore(numCorrect)
 })
