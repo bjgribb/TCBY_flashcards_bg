@@ -9,6 +9,11 @@ html {
     min-height: 100%;
 }
 
+.message_head {
+    position:absolute;
+    color: darkcyan;
+}
+
 .category-nav {
     display: flex;
     flex-wrap: wrap;
@@ -212,10 +217,16 @@ html {
     padding: .75rem;
     border: 2px dotted darkcyan;
     border-radius: 10px;
+    width: 10%;
+    text-align:center;
 }
 
 .answer-button:hover, .ask-if-correct, .ask-if-wrong, .question-button:hover {
     cursor: pointer;
+}
+
+.avatar {
+    border-radius: 100%;
 }
 
 .play-navigation p {

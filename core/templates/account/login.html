@@ -6,7 +6,7 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
-
+{% load static %}
 <h1>Sign In</h1>
 
 {% get_providers as socialaccount_providers %}
@@ -18,9 +18,9 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 
 <div class="socialaccount_ballot">
 
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
+<a title="Google" class="socialaccount_provider google" href="/accounts/google/login/?process=login">
+  <img src="/static/btn_google_signin_dark_normal_web.png">
+</a>
 
   {% comment %} <div class="login-or">{% trans 'or' %}</div> {% endcomment %}
 

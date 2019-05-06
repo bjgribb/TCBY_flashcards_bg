@@ -16,8 +16,7 @@
   <body class="page-body">
     {% block body %}
   {% if messages %}
-    <div>
-      <strong>Messages:</strong>
+    <div class='message_head'>
       <ul>
         {% for message in messages %}
         <li>{{ message }}</li>

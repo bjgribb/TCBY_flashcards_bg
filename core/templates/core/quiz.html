@@ -1,30 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <section class="deck-title">
-        <span>
+<section class="deck-title">
+    <span>
         <a href="{{ deck.get_absolute_url }}">{{ deck }}</a>
-        </span>
-        <span> created by {{ deck.creator }}
-        </span>
-    </section>
-    <section class="play-quiz">
-        <div class="question-answer-buttons">
+        created by {{ deck.creator }}
+    </span>
+    <p class="score-display">Score</p>
+</section>
+
+<section class="play-quiz">
+    <div class="question-answer-buttons">
+
         <p class="answer-button">Show Answer</p>
         <h4 class="question-button">To start click HERE</h4>
-        </div>
-        <div class="card-main-container">
+    </div>
+    <div class="play-navigation">
+        <p class="ask-if-correct">Correct?</p>
+        <p class="ask-if-wrong">Wrong?</p>
+    </div>
+    <div class="card-main-container">
         <div class="card-display">
             <div class="card-front">Hello!</div>
             <div class="card-back"></div>
         </div>
-        </div>
-        <div class="play-navigation">
-        {% comment %} <p class="question-button">Question</p> {% endcomment %}
-        <p class="score-display">Score</p>
+    </div>
 
-        <p class="ask-if-correct">Correct?</p>
-        <p class="ask-if-wrong">Wrong?</p>
-        </div>
-    </section>
+</section>
 {% endblock %}
