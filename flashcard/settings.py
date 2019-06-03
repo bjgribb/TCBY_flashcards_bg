@@ -28,7 +28,6 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'apricot-cake-46334.herokuapp.com',
     'blooming-plateau-34255.herokuapp.com'
 ]
 
