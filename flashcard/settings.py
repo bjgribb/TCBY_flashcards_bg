@@ -93,8 +93,8 @@ WSGI_APPLICATION = 'flashcard.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'flashcard',
-        'USER': 'flashcard',
+        'NAME': 'flashcard-bg',
+        'USER': 'bjgribb',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
