@@ -134,3 +134,4 @@ uploads/
 # git will ignore these files when 'git add' command is ran
 .vscode/
 *.pyc
+.env
