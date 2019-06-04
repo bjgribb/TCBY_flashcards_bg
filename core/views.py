@@ -1,4 +1,4 @@
-from core.models import Category, Deck, User, Card, Quiz
+from core.models import Deck, User, Card, Quiz
 from core.forms import NewCardForm, NewDeckForm
 from django.views import generic
 from django.shortcuts import render, get_object_or_404
@@ -21,29 +21,15 @@ def index(request):
     """
     num_decks = Deck.objects.all().count()
     decks = Deck.objects.all()
-    categories = Category.objects.all()
     user = User.objects.all()
 
     context = {
     'num_decks': num_decks,
     'decks': decks,
-    'categories': categories,
     'user': user,
     }
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
-
-class CategoryDetailView(generic.DetailView):
-    """View class for category page of site."""
-    model = Category
-
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get the context
-        context = super(CategoryDetailView, self).get_context_data(**kwargs)
-        # Create any data and add it to the context
-        context['decks'] = Deck.objects.all()
-        return context
-
 
 def deck_detail_view(request):
     pass
@@ -65,16 +51,12 @@ def quiz_view(request, slug):
     """
     View defining the quiz/game portion of the flashcard app.
     """
-    categories = Category.objects.all()
     user = User.objects.all()
     cards = Card.objects.all()
     quiz = Quiz.objects.all()
-    # get the slug for the deck, because the quiz is essentially 
-    ####### Deck Detail view #######
     deck = get_object_or_404(Deck, slug=slug)
 
     context = {
-        'categories': categories,
         'user': user,
         'cards': cards,
         'quiz': quiz,
@@ -122,13 +104,12 @@ def new_deck(request):
         if new_deck_form.is_valid():
             title = request.POST.get('deck_name', '')
             query_dict_copy = request.POST.copy()
-            category_keys = query_dict_copy.pop('categories')
+            public = request.POST.get('public')
             deck = Deck.objects.create(
                 title=title,
                 creator=request.user,
+                public=public,
             )
-            for key in category_keys:
-                deck.categories.add(Category.objects.get(pk=key))
             deck.save()
 
             if query_dict_copy.get('existing_cards'):

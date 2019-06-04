@@ -9,10 +9,10 @@
         {% if user.socialaccount_set.all.0 %}
             <img class="avatar" src="{{ user.socialaccount_set.all.0.get_avatar_url }}">
         {% endif %}
-        <h4 class="create-deck-link">
-            <a href="{% url 'deck_form' %}">Create Deck</a>  <a href="{% url 'card_form' %}">Create Card</a>
-        </h4>
     </div>
+    <h4 class="create-deck-link">
+        <a href="{% url 'deck_form' %}">Create Deck</a>  <a href="{% url 'card_form' %}">Create Card</a>
+    </h4>
 
     <h4>Below are decks you've created:</h4>
 
@@ -22,7 +22,7 @@
                 <li class="user-deck-item"><a href="{{ deck.get_absolute_url }}">{{ deck.title }}</a></li>
             {% endfor %}
         {% else %}
-            <p class="create-deck-link">Create Your Own Deck</p>
+            <p>No personal decks created</p>
         {% endif %}
     </ul> 
        

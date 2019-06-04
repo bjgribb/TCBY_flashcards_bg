@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from core.models import Card, Deck, Category
+from core.models import Card, Deck
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
@@ -38,9 +38,9 @@ class NewCardForm(forms.Form):
 class NewDeckForm(forms.Form):
     deck_name = forms.CharField(max_length=200)
     existing_cards = forms.ModelMultipleChoiceField(required=False, queryset=Card.objects.all())
+    public = forms.BooleanField(required=False)
         # https://docs.djangoproject.com/en/2.2/ref/forms/fields/#fields-which-handle-relationships
-    categories = forms.ModelMultipleChoiceField(queryset=Category.objects.all())
-
+    
     def clean_deck_name(self):
         data = self.cleaned_data['deck_name']
         
