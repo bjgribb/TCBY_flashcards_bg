@@ -9,9 +9,9 @@ html {
     min-height: 100%;
 }
 
-body {
+/* body {
     padding: 1rem;
-}
+} */
 
 .message_head {
     position:absolute;
@@ -78,6 +78,7 @@ body {
 /* Index page */
 .intro {
     border-bottom: 1px solid darkcyan;
+    padding: 1rem;
 }
 
 .index-category-menu-item {
@@ -93,7 +94,7 @@ body {
     display: flex;
     flex-direction: row;
     align-content: flex-start;
-    padding: 1rem 3rem 1rem 3rem;
+    padding: 1rem;
 }
 
 .create-deck-link {
@@ -116,6 +117,10 @@ body {
     margin: 1rem;
     border: 1px solid darkcyan;
     border-radius: 10px;
+}
+
+.user-page {
+    padding: 1rem;
 }
 
 /* Category detail page */
@@ -144,6 +149,7 @@ body {
 /* Quiz detail page */
 .deck-title {
     padding: 1rem 3rem 1rem 3rem;
+    text-align: center;
 }
 
 .play-quiz {
