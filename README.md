@@ -1,4 +1,4 @@
-heroku site: https://dashboard.heroku.com/apps/apricot-cake-46334
+heroku site: https://tcby-flashcards-bg.herokuapp.com
 
 # Instructions
 
