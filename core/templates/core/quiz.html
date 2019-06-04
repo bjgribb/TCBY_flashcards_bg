@@ -3,8 +3,7 @@
 {% block content %}
 <section class="deck-title">
     <span>
-        <a href="{{ deck.get_absolute_url }}">{{ deck }}</a>
-        created by {{ deck.creator }}
+        {{ deck }} created by {{ deck.creator }}
     </span>
     <p class="score-display">Score</p>
 </section>

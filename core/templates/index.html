@@ -2,19 +2,18 @@
 
 {% block content %}
 <div class="intro">
-<h2>Test Yourself</h2>
-<p>Just create an account to start collecting your flashcard decks. Once you are logged in, you can quiz yourself.</p>
+<h2>Welcome</h2>
+<p>Just create an account or login to start creating your own flashcard 
+decks. Or quiz yourself with the available public decks below.</p>
 
 <section class="category-nav">
-    <h3>Decks by category:</h3>
-    {% if categories %}
-      {% for category in categories %}
+    <h3>Public Decks:</h3>
+    {% for deck in decks %}
+      {% if deck.public %}
       <p class="index-category-menu-item">
-        <a href="{{ category.get_absolute_url }}">{{ category }}</a>
+        <a href="{{ deck.get_absolute_url }}">{{ deck.title }}</a>
       </p>
-      {% endfor %}
-    {% else %}
-        <p>There are no categories in the database</p>
-    {% endif %}
+      {% endif %}
+    {% endfor %}
   </section>
 {% endblock %}

@@ -3,7 +3,7 @@
 // const justFlipIt = require('justflipit')
 
 const slug = document.URL.split('/')[5]
-const cardDataUrl = `/core/quiz/${slug}/get_card_data/`
+const cardDataUrl = `/home/quiz/${slug}/get_card_data/`
 const cardDisplay = query('.card-display')
 const questionButton = query('.question-button')
 const scoreDisplay = query('.score-display')
@@ -32,6 +32,7 @@ function showButtons (button) {
 }
 
 function getDeckCards (cardDataUrl) {
+  console.log(slug)
   let promise = fetch(cardDataUrl).then(function (response) {
     if (!response.ok) {
       throw Error(response.statusText)

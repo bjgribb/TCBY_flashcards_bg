@@ -22,11 +22,11 @@ from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('core/', include('core.urls')),
-    path('', RedirectView.as_view(url='/core/', permanent=True)),
+    path('home/', include('core.urls')),
+    path('', RedirectView.as_view(url='/home/', permanent=True)),
     # allauth registration
     path('accounts/', include('allauth.urls')),
 ] 
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-# Clinton suggested to take this out to make heroku work
+
