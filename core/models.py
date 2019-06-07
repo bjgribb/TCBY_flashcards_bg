@@ -1,8 +1,6 @@
 from django.db import models
 from django.urls import reverse
-    # Used to generate URLs by reversing the URL patterns
 from django.contrib.auth.models import User
-    # Required to make use of 'User' class
 from django.utils.text import slugify
 
 # Create your models here.
@@ -10,9 +8,6 @@ from django.utils.text import slugify
 class Quiz(models.Model):
     """Model representing each instance of a user quizzing themself."""
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # Foreign Key used b/c a Quiz can only be taken by 1 User, but User can take many quizzes.
-    total_score = models.IntegerField(null=True, blank=True)
-    # https://docs.djangoproject.com/en/2.2/ref/models/fields/#integerfield
     deck = models.ForeignKey(to='Deck', on_delete=models.SET_NULL, null=True, blank=True, related_name='quiz')
     
 
@@ -63,15 +58,11 @@ class Deck(models.Model):
 class Card(models.Model):
     question = models.CharField(max_length=500)
     answer = models.CharField(max_length=500)
-    correct = models.BooleanField(blank=True, null=True, default=None)
-        # https://docs.djangoproject.com/en/2.1/ref/models/fields/#booleanfield
     decks = models.ManyToManyField(to=Deck, related_name='card', blank=True)
 
     def display_deck(self):
         """Create a string for Decks. This is required to display Decks in Admin."""
         return ', '.join(deck.title for deck in self.decks.all()[:3])
-            # str.join(iterable) --> https://docs.python.org/3.7/library/stdtypes.html?highlight=join#str.join
-            # 1st three '[:3]' deck items in the 'self.deck.all()' for a 'Card' object will be joined separated by a comma ', '
     
     def __str__(self):
         return self.question 
