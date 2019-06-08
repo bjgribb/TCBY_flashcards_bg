@@ -19,20 +19,15 @@ def index(request):
     """
     View function for index view of site.
     """
-    num_decks = Deck.objects.all().count()
     decks = Deck.objects.all()
     user = User.objects.all()
 
     context = {
-    'num_decks': num_decks,
     'decks': decks,
     'user': user,
     }
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
-
-def deck_detail_view(request):
-    pass
 
 def user_list_view(request):
     decks = Deck.objects.all()
@@ -133,7 +128,8 @@ def new_deck(request):
         model_instance = form.save(commit=False)
         model_instance.creator = request.user
         model_instance.save()
-        return HttpResponseRedirect(reverse('user_list'))
+        # return HttpResponseRedirect(reverse('user_list'))
+        return render(request, 'core/card_form.html')
 
     else:
         form = NewDeckForm()
