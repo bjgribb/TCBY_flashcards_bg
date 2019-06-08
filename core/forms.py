@@ -5,26 +5,28 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
-class NewCardForm(forms.Form):
+class NewCardForm(forms.ModelForm):
+
     class Meta:
         model = Card
+        fields = ['question', 'answer', 'decks']
 
-    question = forms.CharField(max_length=500)
-    answer = forms.CharField(max_length=500)
+    # question = forms.CharField(max_length=500)
+    # answer = forms.CharField(max_length=500)
 
-    def clean_question(self):
-        data = self.cleaned_data['question']
+    # def clean_question(self):
+    #     data = self.cleaned_data['question']
         
-        # Check if flashcard already exists. 
-        questions = []
-        for card in Card.objects.all():
-            questions.append(card.question.lower())
+    #     # Check if flashcard already exists. 
+    #     questions = []
+    #     for card in Card.objects.all():
+    #         questions.append(card.question.lower())
 
-        if data.lower() in questions:
-            raise ValidationError(_('Flashcard question already exists'))
+    #     if data.lower() in questions:
+    #         raise ValidationError(_('Flashcard question already exists'))
 
-        # Return the cleaned data.
-        return data
+    #     # Return the cleaned data.
+    #     return data
 
 # class NewDeckForm(forms.Form):
 #     deck_name = forms.CharField(max_length=200)

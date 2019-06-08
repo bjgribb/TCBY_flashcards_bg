@@ -26,7 +26,7 @@ def index(request):
     'decks': decks,
     'user': user,
     }
-    # Render the HTML template index.html with the data in the context variable
+
     return render(request, 'index.html', context=context)
 
 def user_list_view(request):
@@ -60,37 +60,70 @@ def quiz_view(request, slug):
 
     return render(request, 'core/quiz.html', context=context)
 
-def new_card(request):
-    new_card_form = NewCardForm(request.user)
-        ### https://www.programcreek.com/python/example/59672/django.forms.ModelMultipleChoiceField Example 2 ###
-    if request.method == 'POST':
-        new_card_form = NewCardForm(request.user, request.POST)
-            ### https://www.programcreek.com/python/example/59672/django.forms.ModelMultipleChoiceField Example 2 ###
+def new_deck(request):
+    form = NewDeckForm(request.POST)
+    if form.is_valid():
+        model_instance = form.save(commit=False)
+        model_instance.creator = request.user
+        model_instance.save()
+        # return HttpResponseRedirect(reverse('user_list'))
+        # BELIEVE I NEED TO DEFINE FORM HERE FOR NEW CARD OTHERWISE IT WON'T POPULATE FIELDS
+        return render(request, 'core/card_form.html', {'form': form})
 
-        if new_card_form.is_valid():
-            # https://docs.djangoproject.com/en/2.2/ref/forms/api/#django.forms.Form.is_valid
-            question = request.POST.get('question', '')
-                # https://docs.djangoproject.com/en/2.1/ref/request-response/#django.http.HttpRequest.POST
-                # https://docs.djangoproject.com/en/2.1/ref/request-response/#django.http.QueryDict.get
-            answer = request.POST.get('answer', '')
-            query_dict_copy = request.POST.copy()
-                # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict
-            deck_keys = query_dict_copy.pop('existing_decks')
-                # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict.pop
-            card = Card.objects.create(
-                question=question,
-                answer=answer,
-            )
-            for key in deck_keys:
-                card.decks.add(Deck.objects.get(pk=key))
-            card.save()
-
-            return HttpResponseRedirect(reverse('user_list'))
     else:
-        new_card_form = NewCardForm(request.user)
-            ### https://www.programcreek.com/python/example/59672/django.forms.ModelMultipleChoiceField Example 2 ###
+        form = NewDeckForm()
+    
+    return render(request, 'core/deck_form.html', {"form": form})
+
+def new_card(request):
+    form = NewCardForm(request.POST)
+    if form.is_valid():
+        model_instance = form.save(commit=False)
+        model_instance.save()
+        form.save_m2m()
+        return HttpResponseRedirect(reverse('user_list'))
+
+    else:
+        new_card_form = NewCardForm()
 
     return render(request, 'core/card_form.html', {"form": new_card_form})
+
+def get_card_data(request, slug):
+    deck = get_object_or_404(Deck, slug=slug)
+    cards = deck.card.all()
+    return JsonResponse({'deck_cards': [(card.question, card.answer) for card in cards]})
+
+# def new_card(request):
+#     new_card_form = NewCardForm(request.user)
+#         ### https://www.programcreek.com/python/example/59672/django.forms.ModelMultipleChoiceField Example 2 ###
+#     if request.method == 'POST':
+#         new_card_form = NewCardForm(request.user, request.POST)
+#             ### https://www.programcreek.com/python/example/59672/django.forms.ModelMultipleChoiceField Example 2 ###
+
+#         if new_card_form.is_valid():
+#             # https://docs.djangoproject.com/en/2.2/ref/forms/api/#django.forms.Form.is_valid
+#             question = request.POST.get('question', '')
+#                 # https://docs.djangoproject.com/en/2.1/ref/request-response/#django.http.HttpRequest.POST
+#                 # https://docs.djangoproject.com/en/2.1/ref/request-response/#django.http.QueryDict.get
+#             answer = request.POST.get('answer', '')
+#             query_dict_copy = request.POST.copy()
+#                 # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict
+#             deck_keys = query_dict_copy.pop('existing_decks')
+#                 # https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.QueryDict.pop
+#             card = Card.objects.create(
+#                 question=question,
+#                 answer=answer,
+#             )
+#             for key in deck_keys:
+#                 card.decks.add(Deck.objects.get(pk=key))
+#             card.save()
+
+#             return HttpResponseRedirect(reverse('user_list'))
+#     else:
+#         new_card_form = NewCardForm(request.user)
+#             ### https://www.programcreek.com/python/example/59672/django.forms.ModelMultipleChoiceField Example 2 ###
+
+#     return render(request, 'core/card_form.html', {"form": new_card_form})
 
 # def new_deck(request):
 #     new_deck_form = NewDeckForm()
@@ -121,21 +154,3 @@ def new_card(request):
 #         new_deck_form = NewDeckForm()
 
 #     return render(request, 'core/deck_form.html', {"form": new_deck_form})
-
-def new_deck(request):
-    form = NewDeckForm(request.POST)
-    if form.is_valid():
-        model_instance = form.save(commit=False)
-        model_instance.creator = request.user
-        model_instance.save()
-        # return HttpResponseRedirect(reverse('user_list'))
-        return render(request, 'core/card_form.html')
-
-    else:
-        form = NewDeckForm()
-        return render(request, 'core/deck_form.html', {"form": form})
-
-def get_card_data(request, slug):
-    deck = get_object_or_404(Deck, slug=slug)
-    cards = deck.card.all()
-    return JsonResponse({'deck_cards': [(card.question, card.answer) for card in cards]})
