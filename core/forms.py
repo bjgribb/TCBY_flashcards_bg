@@ -26,21 +26,27 @@ class NewCardForm(forms.Form):
         # Return the cleaned data.
         return data
 
-class NewDeckForm(forms.Form):
-    deck_name = forms.CharField(max_length=200)
-    # existing_cards = forms.ModelMultipleChoiceField(required=False, queryset=Card.objects.all())
-    public = forms.BooleanField(required=True)
+# class NewDeckForm(forms.Form):
+#     deck_name = forms.CharField(max_length=200)
+#     existing_cards = forms.ModelMultipleChoiceField(required=False, queryset=Card.objects.all())
+#     public = forms.BooleanField(required=True)
         
-    def clean_deck_name(self):
-        data = self.cleaned_data['deck_name']
+#     def clean_deck_name(self):
+#         data = self.cleaned_data['deck_name']
         
-        # Check if flashcard already exists. 
-        titles = []
-        for deck in Deck.objects.all():
-            titles.append(deck.title.lower())
+#         # Check if flashcard already exists. 
+#         titles = []
+#         for deck in Deck.objects.all():
+#             titles.append(deck.title.lower())
 
-        if data.lower() in titles:
-            raise ValidationError(_('Deck name already exists'))
+#         if data.lower() in titles:
+#             raise ValidationError(_('Deck name already exists'))
 
-        # Return the cleaned data.
-        return data
+#         # Return the cleaned data.
+#         return data
+
+class NewDeckForm(forms.ModelForm):
+    
+    class Meta:
+        model = Deck
+        fields = ['title', 'public']

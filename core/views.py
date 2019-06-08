@@ -97,35 +97,47 @@ def new_card(request):
 
     return render(request, 'core/card_form.html', {"form": new_card_form})
 
-def new_deck(request):
-    new_deck_form = NewDeckForm()
-    if request.method == 'POST':
-        new_deck_form = NewDeckForm(request.POST)
-        if new_deck_form.is_valid():
-            title = request.POST.get('deck_name', '')
-            query_dict_copy = request.POST.copy()
-            public = request.POST.get('public')
-            deck = Deck.objects.create(
-                title=title,
-                creator=request.user,
-                public=public,
-            )
-            deck.save()
+# def new_deck(request):
+#     new_deck_form = NewDeckForm()
+#     if request.method == 'POST':
+#         new_deck_form = NewDeckForm(request.POST)
+#         if new_deck_form.is_valid():
+#             title = request.POST.get('deck_name', '')
+#             query_dict_copy = request.POST.copy()
+#             public = request.POST.get('public')
+#             deck = Deck.objects.create(
+#                 title=title,
+#                 creator=request.user,
+#                 public=public,
+#             )
+#             deck.save()
 
-            if query_dict_copy.get('existing_cards'):
-                card_keys = query_dict_copy.pop('existing_cards')
-                for key in card_keys:
-                    card = Card.objects.get(pk=key)
-                    card.decks.add(deck)
-                    card.save()
-            else:
-                pass
+#             if query_dict_copy.get('existing_cards'):
+#                 card_keys = query_dict_copy.pop('existing_cards')
+#                 for key in card_keys:
+#                     card = Card.objects.get(pk=key)
+#                     card.decks.add(deck)
+#                     card.save()
+#             else:
+#                 pass
             
-            return HttpResponseRedirect(reverse('user_list'))
-    else:
-        new_deck_form = NewDeckForm()
+#             return HttpResponseRedirect(reverse('user_list'))
+#     else:
+#         new_deck_form = NewDeckForm()
 
-    return render(request, 'core/deck_form.html', {"form": new_deck_form})
+#     return render(request, 'core/deck_form.html', {"form": new_deck_form})
+
+def new_deck(request):
+    form = NewDeckForm(request.POST)
+    if form.is_valid():
+        model_instance = form.save(commit=False)
+        model_instance.creator = request.user
+        model_instance.save()
+        return HttpResponseRedirect(reverse('user_list'))
+
+    else:
+        form = NewDeckForm()
+        return render(request, 'core/deck_form.html', {"form": form})
 
 def get_card_data(request, slug):
     deck = get_object_or_404(Deck, slug=slug)
