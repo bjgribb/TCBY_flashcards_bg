@@ -9,6 +9,10 @@ html {
     min-height: 100%;
 }
 
+label {
+    margin-right: 5px;
+}
+
 .message_head {
     position:absolute;
     color: darkcyan;
@@ -31,7 +35,8 @@ html {
 
 .page-header {
     display: flex;
-    padding: 4rem 3rem 4rem 3rem;
+    justify-content: space-around;
+    padding: 2rem;
     border-bottom: 2px solid darkcyan;
     background: url(https://i.ibb.co/pyh9KHY/brandi-redd-122054-unsplash.jpg) 50%/ cover;
     overflow: hidden;
@@ -70,10 +75,14 @@ html {
     border: 1px solid darkcyan;
 }
 
+.main-section {
+    padding: 1rem;
+}
+
 /* Index page */
 .intro {
-    padding: 1rem 3rem 1rem 3rem;
     border-bottom: 1px solid darkcyan;
+    padding: 1rem;
 }
 
 .index-category-menu-item {
@@ -89,13 +98,12 @@ html {
     display: flex;
     flex-direction: row;
     align-content: flex-start;
-    padding: 1rem 3rem 1rem 3rem;
+    padding: 1rem;
 }
 
 .create-deck-link {
     font-style: italic;
     font-weight: 600;
-    padding: 1rem;
 }
 
 .list-public-decks, .list-user-decks {
@@ -113,6 +121,10 @@ html {
     margin: 1rem;
     border: 1px solid darkcyan;
     border-radius: 10px;
+}
+
+.user-page {
+    padding: 1rem;
 }
 
 /* Category detail page */
@@ -138,13 +150,10 @@ html {
     border-radius: 10px;
 }
 
-.category-deck-creator {
-
-}
-
 /* Quiz detail page */
 .deck-title {
     padding: 1rem 3rem 1rem 3rem;
+    text-align: center;
 }
 
 .play-quiz {
@@ -227,6 +236,8 @@ html {
 
 .avatar {
     border-radius: 100%;
+    height: 200px;
+    width: 200px;
 }
 
 .play-navigation p {
