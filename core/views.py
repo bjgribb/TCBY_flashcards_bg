@@ -1,7 +1,7 @@
 from core.models import Deck, User, Card, Quiz
 from core.forms import NewCardForm, NewDeckForm
 from django.views import generic
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
@@ -66,9 +66,7 @@ def new_deck(request):
         model_instance = form.save(commit=False)
         model_instance.creator = request.user
         model_instance.save()
-        # return HttpResponseRedirect(reverse('user_list'))
-        # BELIEVE I NEED TO DEFINE FORM HERE FOR NEW CARD OTHERWISE IT WON'T POPULATE FIELDS
-        return render(request, 'core/card_form.html', {'form': form})
+        return redirect('/home/card/new/')
 
     else:
         form = NewDeckForm()
