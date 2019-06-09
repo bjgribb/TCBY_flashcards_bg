@@ -75,6 +75,10 @@ label {
     border: 1px solid darkcyan;
 }
 
+.main-section {
+    padding: 1rem;
+}
+
 /* Index page */
 .intro {
     border-bottom: 1px solid darkcyan;
