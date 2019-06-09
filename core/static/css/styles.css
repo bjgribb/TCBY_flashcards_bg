@@ -9,9 +9,9 @@ html {
     min-height: 100%;
 }
 
-/* body {
-    padding: 1rem;
-} */
+label {
+    margin-right: 5px;
+}
 
 .message_head {
     position:absolute;
