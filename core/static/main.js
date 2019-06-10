@@ -22,14 +22,14 @@ function queryAll (selector) {
   return document.querySelectorAll(selector)
 }
 
-// function that fetchs from URL
-function hideButtons (button) {
-  button.hidden = true
-}
+// // function that fetchs from URL
+// function hideButtons (button) {
+//   button.hidden = true
+// }
 
-function showButtons (button) {
-  button.hidden = false
-}
+// function showButtons (button) {
+//   button.hidden = false
+// }
 
 function getDeckCards (cardDataUrl) {
   console.log(slug)
@@ -46,12 +46,9 @@ function getDeckCards (cardDataUrl) {
 function shuffle (array) {
   var currentIndex = array.length
   var temporaryValue, randomIndex
-  // While there remain elements to shuffle...
   while (currentIndex !== 0) {
-    // Pick a remaining element...
     randomIndex = Math.floor(Math.random() * currentIndex)
     currentIndex -= 1
-    // And swap it with the current element.
     temporaryValue = array[currentIndex]
     array[currentIndex] = array[randomIndex]
     array[randomIndex] = temporaryValue
@@ -71,70 +68,45 @@ function getQuestionAnswer (cardDataUrl) {
     })
 }
 
-function showAnswer (shuffledDeck) {
-  query('.answer-button').addEventListener('click', function () {
-    showButtons(correctButton)
-    showButtons(incorrectButton)
-    hideButtons(questionButton)
-    hideButtons(answerButton)
-    cardBack.innerText = shuffledDeck[0][1]
-    shuffledDeck.shift()
-  })
-}
+// function showAnswer (shuffledDeck) {
+//   query('.answer-button').addEventListener('click', function () {
+//     cardBack.innerHTML = `<p>${shuffledDeck[0][1]}</p>
+//                           <p class='ask-if-correct'>Correct?</p>
+//                           <i class="fas fa-times-circle"></i>`
+//     shuffledDeck.shift()
+//   })
+// }
 
 function showQuestion (shuffledDeck) {
   document.addEventListener('click', function (event) {
     if (event.target.classList.contains('ask-if-correct') ||
     (event.target.classList.contains('ask-if-wrong') ||
     (event.target.classList.contains('question-button')))) {
-      hideButtons(correctButton)
-      hideButtons(incorrectButton)
-      showButtons(answerButton)
-      cardBack.innerText = ' '
       if (shuffledDeck.length === 0) {
         cardFront.innerText = "You've finished!"
-        hideButtons(questionButton)
-        hideButtons(answerButton)
       } else {
         cardFront.innerText = shuffledDeck[0][0]
-        hideButtons(questionButton)
+        cardBack.innerHTML = `<p>${shuffledDeck[0][1]}</p>`
+        shuffledDeck.shift()
       }
     }
   })
 }
 
 function updateScore (numCorrect, shuffledDeck, totalDeck) {
-  correctButton.addEventListener('click', function () {
-    numCorrect++
-    scoreDisplay.innerText = numCorrect
-    if (shuffledDeck.length < 1) {
-      scoreDisplay.innerText = `${numCorrect} out of ${totalDeck}`
-    }
-  })
+  if (correctButton) {
+    correctButton.addEventListener('click', function () {
+      numCorrect++
+      scoreDisplay.innerText = numCorrect
+      if (shuffledDeck.length < 1) {
+        scoreDisplay.innerText = `${numCorrect} out of ${totalDeck}`
+      }
+    })
+  }
 }
 
-// document.addEventListener('click', function (event) {
-//   if (event.target.classList.contains('ask-if-correct') ||
-//   (event.target.classList.contains('ask-if-wrong'))) {
-//     hideButtons(correctButton)
-//     hideButtons(incorrectButton)
-//     showButtons(answerButton)
-//     cardBack.innerText = ' '
-//     if (shuffledDeck.length === 0) {
-//       cardFront.innerText = "You've finished!"
-//       hideButtons(questionButton)
-//     } else {
-//       cardFront.innerText = shuffledDeck[0][0]
-//       questionButton.innerText = 'Next Question'
-//     }
-//   }
-// })
-
 document.addEventListener('DOMContentLoaded', function () {
-  hideButtons(correctButton)
-  hideButtons(incorrectButton)
-  hideButtons(answerButton)
   getDeckCards(cardDataUrl)
   getQuestionAnswer(cardDataUrl)
-  // updateScore(numCorrect)
+  updateScore(numCorrect)
 })
