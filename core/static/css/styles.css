@@ -185,17 +185,23 @@ label {
 }
 
 .card-main-container {
+    perspective: 1000px;
     display: flex;
     flex-direction: column;
     border-radius: 15px;
 }
 
+.card-main-container:hover .card-display, .card-main-container.hover .card-display {
+    transform: rotateY(180deg)
+}
+
+.card-main-container, .card-front, .card-back {
+    width: 320px;
+    height: 480px;
+}
+
 .card-display {
     font-size: 2.5rem;
-    min-width: 600px;
-    max-width: 600px;
-    min-height: 400px;
-    max-height: 400px;
     text-align: center;
     padding: 3rem 1rem 1rem 1rem;
     margin: .5rem;
@@ -204,16 +210,29 @@ label {
                 5px 5px rgba(0, 0, 0, .2),
                 8px 8px rgba(0, 0, 0, .1);
     border-radius: 15px;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.card-front, .card-back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .card-back {
     color: hotpink;
     font-size: 3rem;
+    transform: rotateY(180deg)
 }
 
 .card-front {
     font-style: italic;
     border-bottom: 1px solid black;
+    z-index: 2;
+    transform: rotateY(0deg)
 }
 
 .play-navigation {
@@ -272,10 +291,6 @@ label {
 
     .card-display {
         font-size: 2.5rem;
-        min-width: 350px;
-        max-width: 600px;
-        min-height: 200px;
-        max-height: 400px;
         text-align: center;
         padding: 3rem 1rem 1rem 1rem;
         margin: .5rem;
@@ -324,10 +339,6 @@ label {
 
     .card-display {
         font-size: 2.5rem;
-        min-width: 350px;
-        max-width: 600px;
-        min-height: 200px;
-        max-height: 400px;
         text-align: center;
         padding: 3rem 1rem 1rem 1rem;
         margin: .5rem;
