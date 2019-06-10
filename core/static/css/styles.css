@@ -191,7 +191,7 @@ label {
     border-radius: 15px;
 }
 
-.card-main-container:hover .card-display, .card-main-container.hover .card-display {
+.card-main-container.flip .card-display {
     transform: rotateY(180deg)
 }
 
@@ -264,17 +264,6 @@ label {
     align-items: center; 
 }
 
-/* Footer */
-.page-footer {
-    background-color: mintcream;
-    /* position: absolute; */
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2rem;
-    padding: 1rem 3rem 3rem 3rem;
-}
-
 @media (max-width: 1024px) {
 
     .header-title, .header-title a {
@@ -283,18 +272,6 @@ label {
         height: inherit;
         color: mintcream;
         text-shadow: .2rem .2rem orange;
-    }
-
-    .card-display {
-        font-size: 2.5rem;
-        text-align: center;
-        padding: 3rem 1rem 1rem 1rem;
-        margin: .5rem;
-        border: 3px solid darkcyan;
-        box-shadow: 3px 3px rgba(0, 0, 0, .4),
-                    5px 5px rgba(0, 0, 0, .2),
-                    8px 8px rgba(0, 0, 0, .1);
-        border-radius: 15px;
     }
 }
 
@@ -331,15 +308,6 @@ label {
         height: inherit;
         color: mintcream;
         text-shadow: .2rem .2rem orange;
-    }
-
-    .card-display {
-        font-size: 2.5rem;
-        text-align: center;
-        padding: 3rem 1rem 1rem 1rem;
-        margin: .5rem;
-        border: 3px solid darkcyan;
-        border-radius: 15px;
     }
 
     .play-quiz {

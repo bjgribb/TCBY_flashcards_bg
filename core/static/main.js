@@ -7,6 +7,7 @@ const cardDataUrl = `/home/quiz/${slug}/get_card_data/`
 const cardDisplay = query('.card-display')
 const questionButton = query('.question-button')
 const scoreDisplay = query('.score-display')
+const card = query('.card-main-container')
 const cardFront = query('.card-front')
 const cardBack = query('.card-back')
 const answerButton = query('.answer-button')
@@ -22,17 +23,15 @@ function queryAll (selector) {
   return document.querySelectorAll(selector)
 }
 
-// // function that fetchs from URL
-// function hideButtons (button) {
-//   button.hidden = true
-// }
+function hideButtons (button) {
+  button.hidden = true
+}
 
-// function showButtons (button) {
-//   button.hidden = false
-// }
+function showButtons (button) {
+  button.hidden = false
+}
 
 function getDeckCards (cardDataUrl) {
-  console.log(slug)
   let promise = fetch(cardDataUrl).then(function (response) {
     if (!response.ok) {
       throw Error(response.statusText)
@@ -84,9 +83,12 @@ function showQuestion (shuffledDeck) {
     (event.target.classList.contains('question-button')))) {
       if (shuffledDeck.length === 0) {
         cardFront.innerText = "You've finished!"
+        cardBack.innerText = "You've finished!"
       } else {
         cardFront.innerText = shuffledDeck[0][0]
-        cardBack.innerHTML = `<p>${shuffledDeck[0][1]}</p>`
+        cardBack.innerHTML = `<p>${shuffledDeck[0][1]}</p>
+                              <i class="fas fa-check-circle ask-if-correct"></i>
+                              <i class="fas fa-times-circle ask-if-wrong"></i>`
         shuffledDeck.shift()
       }
     }
@@ -105,7 +107,14 @@ function updateScore (numCorrect, shuffledDeck, totalDeck) {
   }
 }
 
+function flipCard () {
+  card.addEventListener('click', function () {
+    card.classList.toggle('flip')
+  })
+}
+
 document.addEventListener('DOMContentLoaded', function () {
+  flipCard()
   getDeckCards(cardDataUrl)
   getQuestionAnswer(cardDataUrl)
   updateScore(numCorrect)
