@@ -151,29 +151,25 @@ label {
 }
 
 /* Quiz detail page */
-.deck-title {
-    padding: 1rem 3rem 1rem 3rem;
-    text-align: center;
-}
 
 .play-quiz {
     display: flex;
     flex-direction: row;
     margin-bottom: 2rem;
 }
-
-.question-answer-buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.ask-if-correct {
+    color: green;
 }
 
-.question-button {
+.ask-if-wrong {
+    color: red;
+}
+
+.start-button-div{
     text-align: center;
-    justify-content: center;
-    padding: 1rem;
-    border: 7px dotted hotpink;
-    margin: 2rem 0 2rem 0;
+    font-size: 3rem;
+    color: darkcyan;
+    margin: 0;
 }
 
 .answer-button {
@@ -226,7 +222,7 @@ label {
 }
 
 .card-front {
-    font-style: italic;
+    font-size: 3rem;
     z-index: 2;
     transform: rotateY(0deg)
 }
@@ -244,10 +240,6 @@ label {
     width: 10%;
     text-align:center;
 }
-
-/* .answer-button:hover, .ask-if-correct, .ask-if-wrong, .question-button:hover {
-    cursor: pointer;
-} */
 
 .avatar {
     border-radius: 100%;

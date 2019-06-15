@@ -5,21 +5,21 @@
     <div>
         {{ deck }} created by {{ deck.creator }}
     </div>
+    <div>
     <p class="score-display">Score</p>
+    </div>
 </section>
 
-<section class="play-quiz">
-    <div class="question-answer-buttons">
-        <p class="answer-button">Show Answer</p>
-        <h4 class="question-button">To start click HERE</h4>
-    </div>
+<div class="start-button-div start-button">
+    <i class="fas fa-play-circle"></i>
+</div>
 
+<section class="play-quiz">
     <div class="card-main-container">
         <div class="card-display">
-            <div class="card-front">Click the start button to begin</div>
-            <div class="card-back">Click the start button to begin</div>
+            <div class="card-front">Click the play button to begin</div>
+            <div class="card-back">Click the play button to begin</div>
         </div>
     </div>
-
 </section>
 {% endblock %}
