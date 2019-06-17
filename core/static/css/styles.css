@@ -151,29 +151,20 @@ label {
 }
 
 /* Quiz detail page */
-.deck-title {
-    padding: 1rem 3rem 1rem 3rem;
+
+.ask-if-correct {
+    color: green;
+}
+
+.ask-if-wrong {
+    color: red;
+}
+
+.start-button-div{
     text-align: center;
-}
-
-.play-quiz {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 2rem;
-}
-
-.question-answer-buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.question-button {
-    text-align: center;
-    justify-content: center;
-    padding: 1rem;
-    border: 7px dotted hotpink;
-    margin: 2rem 0 2rem 0;
+    font-size: 3rem;
+    color: darkcyan;
+    margin: 0;
 }
 
 .answer-button {
@@ -185,35 +176,54 @@ label {
 }
 
 .card-main-container {
+    perspective: 1000px;
     display: flex;
     flex-direction: column;
     border-radius: 15px;
 }
 
+.card-main-container.flip .card-display {
+    transform: rotateY(180deg)
+}
+
+.card-main-container, .card-front, .card-back {
+    width: 320px;
+    height: 320px;
+}
+
+.instructions {
+    font-size: 0.75rem;
+}
+
 .card-display {
     font-size: 2.5rem;
-    min-width: 600px;
-    max-width: 600px;
-    min-height: 400px;
-    max-height: 400px;
     text-align: center;
-    padding: 3rem 1rem 1rem 1rem;
-    margin: .5rem;
+    min-width: 320px;
+    min-height: 320px;
     border: 3px solid darkcyan;
-    box-shadow: 3px 3px rgba(0, 0, 0, .4),
-                5px 5px rgba(0, 0, 0, .2),
-                8px 8px rgba(0, 0, 0, .1);
     border-radius: 15px;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.card-front, .card-back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .card-back {
     color: hotpink;
     font-size: 3rem;
+    transform: rotateY(180deg)
 }
 
 .card-front {
-    font-style: italic;
-    border-bottom: 1px solid black;
+    font-size: 3rem;
+    z-index: 2;
+    transform: rotateY(0deg)
 }
 
 .play-navigation {
@@ -228,10 +238,7 @@ label {
     border-radius: 10px;
     width: 10%;
     text-align:center;
-}
-
-.answer-button:hover, .ask-if-correct, .ask-if-wrong, .question-button:hover {
-    cursor: pointer;
+    margin-bottom: 1rem;
 }
 
 .avatar {
@@ -249,17 +256,6 @@ label {
     align-items: center; 
 }
 
-/* Footer */
-.page-footer {
-    background-color: mintcream;
-    /* position: absolute; */
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2rem;
-    padding: 1rem 3rem 3rem 3rem;
-}
-
 @media (max-width: 1024px) {
 
     .header-title, .header-title a {
@@ -268,22 +264,6 @@ label {
         height: inherit;
         color: mintcream;
         text-shadow: .2rem .2rem orange;
-    }
-
-    .card-display {
-        font-size: 2.5rem;
-        min-width: 350px;
-        max-width: 600px;
-        min-height: 200px;
-        max-height: 400px;
-        text-align: center;
-        padding: 3rem 1rem 1rem 1rem;
-        margin: .5rem;
-        border: 3px solid darkcyan;
-        box-shadow: 3px 3px rgba(0, 0, 0, .4),
-                    5px 5px rgba(0, 0, 0, .2),
-                    8px 8px rgba(0, 0, 0, .1);
-        border-radius: 15px;
     }
 }
 
@@ -320,22 +300,6 @@ label {
         height: inherit;
         color: mintcream;
         text-shadow: .2rem .2rem orange;
-    }
-
-    .card-display {
-        font-size: 2.5rem;
-        min-width: 350px;
-        max-width: 600px;
-        min-height: 200px;
-        max-height: 400px;
-        text-align: center;
-        padding: 3rem 1rem 1rem 1rem;
-        margin: .5rem;
-        border: 3px solid darkcyan;
-        box-shadow: 3px 3px rgba(0, 0, 0, .4),
-                    5px 5px rgba(0, 0, 0, .2),
-                    8px 8px rgba(0, 0, 0, .1);
-        border-radius: 15px;
     }
 
     .play-quiz {
