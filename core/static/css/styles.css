@@ -152,11 +152,6 @@ label {
 
 /* Quiz detail page */
 
-.play-quiz {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 2rem;
-}
 .ask-if-correct {
     color: green;
 }

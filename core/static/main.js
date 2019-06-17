@@ -69,13 +69,17 @@ function showQuestion (shuffledDeck) {
         cardBack.innerText = "You've finished!"
       } else {
         cardFront.innerText = shuffledDeck[0][0]
-        cardBack.innerHTML = `<p>${shuffledDeck[0][1]}</p>
-                              <i class="fas fa-check-circle ask-if-correct"></i>
-                              <i class="fas fa-times-circle ask-if-wrong"></i>`
+        getAnswer(shuffledDeck)
         shuffledDeck.shift()
       }
     }
   })
+}
+
+function getAnswer(shuffledDeck) {
+  cardBack.innerHTML = `<p>${shuffledDeck[0][1]}</p>
+                        <i class="fas fa-check-circle ask-if-correct"></i>
+                        <i class="fas fa-times-circle ask-if-wrong"></i>`
 }
 
 function startGame (shuffledDeck) {
