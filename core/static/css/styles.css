@@ -214,6 +214,10 @@ label {
     left: 0;
 }
 
+.card-front:hover, .card-back:hover, .next:hover .instructions:hover {
+    cursor: pointer;
+}
+
 .card-back {
     color: hotpink;
     font-size: 3rem;

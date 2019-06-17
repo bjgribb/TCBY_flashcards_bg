@@ -83,8 +83,8 @@ function startGame (shuffledDeck) {
     cardBack.innerHTML = `<p>${shuffledDeck[0][1]}</p>
                           <i class="fas fa-check-circle ask-if-correct"></i>
                           <i class="fas fa-times-circle ask-if-wrong"></i>`
-    startButton.innerHTML = `<i class="fas fa-arrow-circle-right next"></i>
-                            <p class='instructions'>NEXT</p>`
+    startButton.innerHTML = `<i class="fas fa-arrow-circle-right next">
+                            <p class='instructions'>NEXT</p></i>`
   })
 }
 
@@ -93,11 +93,13 @@ function updateScore (numCorrect, shuffledDeck) {
     if (event.target.classList.contains('ask-if-correct')) {
       numCorrect++
       scoreDisplay.innerText = numCorrect
-      cardFront.innerText = shuffledDeck[0][0]
+      cardFront.innerHTML = `<p>${shuffledDeck[0][0]}</p>
+                            <p class='instructions'>Click Next to view the next card</p>`
       cardBack.innerHTML = cardBack.innerHTML = `<p>${shuffledDeck[0][1]}</p>`
     } else {
       if (event.target.classList.contains('ask-if-wrong')) {
-        cardFront.innerText = shuffledDeck[0][0]
+        cardFront.innerText = `<p>${shuffledDeck[0][0]}</p>
+                              <p>Click Next to view the next card</p>`
         cardBack.innerHTML = cardBack.innerHTML = `<p>${shuffledDeck[0][1]}</p>`
       }
     }
