@@ -188,7 +188,11 @@ label {
 
 .card-main-container, .card-front, .card-back {
     width: 320px;
-    height: 480px;
+    height: 320px;
+}
+
+.instructions {
+    font-size: 0.75rem;
 }
 
 .card-display {
@@ -234,6 +238,7 @@ label {
     border-radius: 10px;
     width: 10%;
     text-align:center;
+    margin-bottom: 1rem;
 }
 
 .avatar {

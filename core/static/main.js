@@ -53,56 +53,55 @@ function getQuestionAnswer (cardDataUrl) {
     .then(cardData => {
       let array = (Object.values(cardData)[0])
       let shuffledDeck = (shuffle(array))
-      const totalDeck = shuffledDeck.length
       startGame(shuffledDeck)
       showQuestion(shuffledDeck)
-      updateScore(numCorrect, shuffledDeck, totalDeck)
+      updateScore(numCorrect, shuffledDeck)
     })
 }
 
 function showQuestion (shuffledDeck) {
   document.addEventListener('click', function (event) {
-    if (event.target.classList.contains('ask-if-correct') ||
-    (event.target.classList.contains('ask-if-wrong'))) {
+    if (event.target.classList.contains('next')) {
+      shuffledDeck.shift()
       if (shuffledDeck.length === 0) {
         cardFront.innerText = "You've finished!"
         cardBack.innerText = "You've finished!"
+        startButton.innerHTML = ''
       } else {
         cardFront.innerText = shuffledDeck[0][0]
-        getAnswer(shuffledDeck)
-        shuffledDeck.shift()
+        cardBack.innerHTML = `<p>${shuffledDeck[0][1]}</p>
+                              <i class="fas fa-check-circle ask-if-correct"></i>
+                              <i class="fas fa-times-circle ask-if-wrong"></i>`
       }
     }
   })
 }
 
-function getAnswer(shuffledDeck) {
-  cardBack.innerHTML = `<p>${shuffledDeck[0][1]}</p>
-                        <i class="fas fa-check-circle ask-if-correct"></i>
-                        <i class="fas fa-times-circle ask-if-wrong"></i>`
-}
-
 function startGame (shuffledDeck) {
   startButton.addEventListener('click', function () {
-    hideButtons(startButton)
     cardFront.innerText = shuffledDeck[0][0]
     cardBack.innerHTML = `<p>${shuffledDeck[0][1]}</p>
                           <i class="fas fa-check-circle ask-if-correct"></i>
                           <i class="fas fa-times-circle ask-if-wrong"></i>`
-    shuffledDeck.shift()
+    startButton.innerHTML = `<i class="fas fa-arrow-circle-right next"></i>
+                            <p class='instructions'>NEXT</p>`
   })
 }
 
-function updateScore (numCorrect, shuffledDeck, totalDeck) {
-  if (correctButton) {
-    correctButton.addEventListener('click', function () {
+function updateScore (numCorrect, shuffledDeck) {
+  document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('ask-if-correct')) {
       numCorrect++
       scoreDisplay.innerText = numCorrect
-      if (shuffledDeck.length < 1) {
-        scoreDisplay.innerText = `${numCorrect} out of ${totalDeck}`
+      cardFront.innerText = shuffledDeck[0][0]
+      cardBack.innerHTML = cardBack.innerHTML = `<p>${shuffledDeck[0][1]}</p>`
+    } else {
+      if (event.target.classList.contains('ask-if-wrong')) {
+        cardFront.innerText = shuffledDeck[0][0]
+        cardBack.innerHTML = cardBack.innerHTML = `<p>${shuffledDeck[0][1]}</p>`
       }
-    })
-  }
+    }
+  })
 }
 
 function flipCard () {
