@@ -5,23 +5,10 @@ const card = query('.card-main-container')
 const cardFront = query('.card-front')
 const cardBack = query('.card-back')
 const startButton = query('.start-button')
-let correctButton = query('.ask-if-correct')
 let numCorrect = 0
 
 function query (selector) {
   return document.querySelector(selector)
-}
-
-function queryAll (selector) {
-  return document.querySelectorAll(selector)
-}
-
-function hideButtons (button) {
-  button.hidden = true
-}
-
-function showButtons (button) {
-  button.hidden = false
 }
 
 function getDeckCards (cardDataUrl) {
@@ -118,5 +105,4 @@ document.addEventListener('DOMContentLoaded', function () {
   flipCard()
   getDeckCards(cardDataUrl)
   getQuestionAnswer(cardDataUrl)
-  updateScore(numCorrect)
 })

@@ -192,7 +192,7 @@ label {
 }
 
 .instructions {
-    font-size: 0.75rem;
+    font-size: 1rem;
 }
 
 .card-display {
@@ -214,7 +214,7 @@ label {
     left: 0;
 }
 
-.card-front:hover, .card-back:hover, .next:hover .instructions:hover {
+.card-front:hover, .card-back:hover, .next:hover {
     cursor: pointer;
 }
 
