@@ -85,8 +85,8 @@ function updateScore (numCorrect, shuffledDeck) {
       cardBack.innerHTML = cardBack.innerHTML = `<p>${shuffledDeck[0][1]}</p>`
     } else {
       if (event.target.classList.contains('ask-if-wrong')) {
-        cardFront.innerText = `<p>${shuffledDeck[0][0]}</p>
-                              <p>Click Next to view the next card</p>`
+        cardFront.innerHTML = `<p>${shuffledDeck[0][0]}</p>
+                              <p class='instructions'>Click Next to view the next card</p>`
         cardBack.innerHTML = cardBack.innerHTML = `<p>${shuffledDeck[0][1]}</p>`
       }
     }
